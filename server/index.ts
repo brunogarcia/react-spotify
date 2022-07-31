@@ -62,9 +62,14 @@ app.get('/callback', async (req: Request, res: Response) => {
     })
 
     if (response.status === 200) {
-      const { access_token: accessToken, token_type: tokenType } = response.data
-      authorization.set({ tokenType, accessToken })
-      res.redirect('user')
+      const { access_token: accessToken, refresh_token: refreshToken } = response.data
+
+      const queryParams = querystring.stringify({
+        access_token: accessToken,
+        refresh_token: refreshToken
+      })
+
+      res.redirect(`http://localhost:3000/?${queryParams}`)
     } else {
       res.send(response)
     }
