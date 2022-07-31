@@ -18,7 +18,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const stateKey = 'spotify_auth_state';
 const scope = 'user-read-private user-read-email';
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.redirect('/login');
 });
 app.get('/login', (req, res) => {
     const state = (0, generateRandomString_1.default)(16);
@@ -52,13 +52,48 @@ app.get('/callback', (req, res) => {
     })
         .then((response) => {
         if (response.status === 200) {
-            res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+            const { access_token: accessToken, token_type: tokenType } = response.data;
+            axios_1.default.get('https://api.spotify.com/v1/me', {
+                headers: {
+                    Authorization: `${tokenType} ${accessToken}`
+                }
+            })
+                .then(response => {
+                res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
+            })
+                .catch(error => {
+                res.send(error);
+            });
         }
         else {
             res.send(response);
         }
     })
         .catch((error) => {
+        res.send(error);
+    });
+});
+app.get('/refresh_token', (req, res) => {
+    const { refresh_token: refreshToken } = req.query;
+    const buffer = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`);
+    const auth = `${buffer.toString('base64')}`;
+    const headers = {
+        Authorization: `Basic ${auth}`,
+        'content-type': 'application/x-www-form-urlencoded'
+    };
+    (0, axios_1.default)({
+        method: 'post',
+        headers,
+        url: 'https://accounts.spotify.com/api/token',
+        data: query_string_1.default.stringify({
+            grant_type: 'refresh_token',
+            refresh_token: refreshToken
+        })
+    })
+        .then(response => {
+        res.send(response.data);
+    })
+        .catch(error => {
         res.send(error);
     });
 });
