@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -20,6 +29,7 @@ const scope = 'user-read-private user-read-email';
 app.get('/', (req, res) => {
     res.redirect('/login');
 });
+// 1) Request authorization from Spotify
 app.get('/login', (req, res) => {
     const state = (0, generateRandomString_1.default)(16);
     const params = query_string_1.default.stringify({
@@ -32,7 +42,8 @@ app.get('/login', (req, res) => {
     res.cookie(stateKey, state);
     res.redirect(`https://accounts.spotify.com/authorize?${params}`);
 });
-app.get('/callback', (req, res) => {
+// 2) Use auth code to request access token
+app.get('/callback', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = query_string_1.default.stringify({
         code: req.query.code || null,
         redirect_uri: REDIRECT_URI,
@@ -44,36 +55,38 @@ app.get('/callback', (req, res) => {
         Authorization: `Basic ${auth}`,
         'content-type': 'application/x-www-form-urlencoded'
     };
-    (0, axios_1.default)({
-        method: 'post',
-        data,
-        headers,
-        url: 'https://accounts.spotify.com/api/token'
-    })
-        .then((response) => {
-        if (response.status === 200) {
-            const { access_token: accessToken, token_type: tokenType } = response.data;
-            axios_1.default.get('https://api.spotify.com/v1/me', {
-                headers: {
-                    Authorization: `${tokenType} ${accessToken}`
-                }
-            })
-                .then(response => {
-                res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-            })
-                .catch(error => {
+    try {
+        const responseToken = yield (0, axios_1.default)({
+            method: 'post',
+            data,
+            headers,
+            url: 'https://accounts.spotify.com/api/token'
+        });
+        if (responseToken.status === 200) {
+            // 3) Use access token to request user data from Spotify API
+            const { access_token: accessToken, token_type: tokenType } = responseToken.data;
+            try {
+                const responseUser = yield axios_1.default.get('https://api.spotify.com/v1/me', {
+                    headers: {
+                        Authorization: `${tokenType} ${accessToken}`
+                    }
+                });
+                res.send(`<pre>${JSON.stringify(responseUser.data, null, 2)}</pre>`);
+            }
+            catch (error) {
                 res.send(error);
-            });
+            }
         }
         else {
-            res.send(response);
+            res.send(responseToken);
         }
-    })
-        .catch((error) => {
+    }
+    catch (error) {
         res.send(error);
-    });
-});
-app.get('/refresh_token', (req, res) => {
+    }
+}));
+// 4) Request refresh token
+app.get('/refresh_token', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { refresh_token: refreshToken } = req.query;
     const buffer = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`);
     const auth = `${buffer.toString('base64')}`;
@@ -81,22 +94,22 @@ app.get('/refresh_token', (req, res) => {
         Authorization: `Basic ${auth}`,
         'content-type': 'application/x-www-form-urlencoded'
     };
-    (0, axios_1.default)({
-        method: 'post',
-        headers,
-        url: 'https://accounts.spotify.com/api/token',
-        data: query_string_1.default.stringify({
-            grant_type: 'refresh_token',
-            refresh_token: refreshToken
-        })
-    })
-        .then(response => {
+    try {
+        const response = yield (0, axios_1.default)({
+            method: 'post',
+            headers,
+            url: 'https://accounts.spotify.com/api/token',
+            data: query_string_1.default.stringify({
+                grant_type: 'refresh_token',
+                refresh_token: refreshToken
+            })
+        });
         res.send(response.data);
-    })
-        .catch(error => {
+    }
+    catch (error) {
         res.send(error);
-    });
-});
+    }
+}));
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at https://localhost:${port}`);
 });

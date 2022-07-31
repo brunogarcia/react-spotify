@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import querystring from 'query-string'
 import express, { Express, Request, Response } from 'express'
 import generateRandomString from './utils/generateRandomString'
@@ -38,7 +38,7 @@ app.get('/login', (req: Request, res: Response) => {
 })
 
 // 2) Use auth code to request access token
-app.get('/callback', (req: Request, res: Response) => {
+app.get('/callback', async (req: Request, res: Response) => {
   const data = querystring.stringify({
     code: req.query.code || null,
     redirect_uri: REDIRECT_URI,
@@ -52,39 +52,38 @@ app.get('/callback', (req: Request, res: Response) => {
     'content-type': 'application/x-www-form-urlencoded'
   }
 
-  axios({
-    method: 'post',
-    data,
-    headers,
-    url: 'https://accounts.spotify.com/api/token'
-  })
-    .then((response: AxiosResponse) => {
-      if (response.status === 200) {
-        // 3) Use access token to request user data from Spotify API
-        const { access_token: accessToken, token_type: tokenType } = response.data
+  try {
+    const responseToken: AxiosResponse = await axios({
+      method: 'post',
+      data,
+      headers,
+      url: 'https://accounts.spotify.com/api/token'
+    })
 
-        axios.get('https://api.spotify.com/v1/me', {
+    if (responseToken.status === 200) {
+      // 3) Use access token to request user data from Spotify API
+      const { access_token: accessToken, token_type: tokenType } = responseToken.data
+
+      try {
+        const responseUser: AxiosResponse = await axios.get('https://api.spotify.com/v1/me', {
           headers: {
             Authorization: `${tokenType} ${accessToken}`
           }
         })
-          .then(response => {
-            res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`)
-          })
-          .catch(error => {
-            res.send(error)
-          })
-      } else {
-        res.send(response)
+        res.send(`<pre>${JSON.stringify(responseUser.data, null, 2)}</pre>`)
+      } catch (error) {
+        res.send(error)
       }
-    })
-    .catch((error: AxiosError) => {
-      res.send(error)
-    })
+    } else {
+      res.send(responseToken)
+    }
+  } catch (error) {
+    res.send(error)
+  }
 })
 
 // 4) Request refresh token
-app.get('/refresh_token', (req: Request, res: Response) => {
+app.get('/refresh_token', async (req: Request, res: Response) => {
   const { refresh_token: refreshToken } = req.query
 
   const buffer = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`)
@@ -94,21 +93,21 @@ app.get('/refresh_token', (req: Request, res: Response) => {
     'content-type': 'application/x-www-form-urlencoded'
   }
 
-  axios({
-    method: 'post',
-    headers,
-    url: 'https://accounts.spotify.com/api/token',
-    data: querystring.stringify({
-      grant_type: 'refresh_token',
-      refresh_token: refreshToken
+  try {
+    const response: AxiosResponse = await axios({
+      method: 'post',
+      headers,
+      url: 'https://accounts.spotify.com/api/token',
+      data: querystring.stringify({
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken
+      })
     })
-  })
-    .then(response => {
-      res.send(response.data)
-    })
-    .catch(error => {
-      res.send(error)
-    })
+
+    res.send(response.data)
+  } catch (error) {
+    res.send(error)
+  }
 })
 
 app.listen(port, () => {
