@@ -17,8 +17,10 @@ const axios_1 = __importDefault(require("axios"));
 const query_string_1 = __importDefault(require("query-string"));
 const express_1 = __importDefault(require("express"));
 const generateRandomString_1 = __importDefault(require("./utils/generateRandomString"));
+const authorization_1 = __importDefault(require("./utils/authorization"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8888;
+const authorization = new authorization_1.default();
 const CLIENT_ID = process.env.CLIENT_ID;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -56,30 +58,34 @@ app.get('/callback', (req, res) => __awaiter(void 0, void 0, void 0, function* (
         'content-type': 'application/x-www-form-urlencoded'
     };
     try {
-        const responseToken = yield (0, axios_1.default)({
+        const response = yield (0, axios_1.default)({
             method: 'post',
             data,
             headers,
             url: 'https://accounts.spotify.com/api/token'
         });
-        if (responseToken.status === 200) {
-            // 3) Use access token to request user data from Spotify API
-            const { access_token: accessToken, token_type: tokenType } = responseToken.data;
-            try {
-                const responseUser = yield axios_1.default.get('https://api.spotify.com/v1/me', {
-                    headers: {
-                        Authorization: `${tokenType} ${accessToken}`
-                    }
-                });
-                res.send(`<pre>${JSON.stringify(responseUser.data, null, 2)}</pre>`);
-            }
-            catch (error) {
-                res.send(error);
-            }
+        if (response.status === 200) {
+            const { access_token: accessToken, token_type: tokenType } = response.data;
+            authorization.set({ tokenType, accessToken });
+            res.redirect('user');
         }
         else {
-            res.send(responseToken);
+            res.send(response);
         }
+    }
+    catch (error) {
+        res.send(error);
+    }
+}));
+// 3) Use access token to request user data from Spotify API
+app.get('/user', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield axios_1.default.get('https://api.spotify.com/v1/me', {
+            headers: {
+                Authorization: authorization.get()
+            }
+        });
+        res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
     }
     catch (error) {
         res.send(error);

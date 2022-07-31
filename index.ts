@@ -3,10 +3,11 @@ import axios, { AxiosResponse } from 'axios'
 import querystring from 'query-string'
 import express, { Express, Request, Response } from 'express'
 import generateRandomString from './utils/generateRandomString'
+import Authorization from './utils/authorization'
 
 const app: Express = express()
-
 const port = process.env.PORT || 8888
+const authorization = new Authorization()
 
 const CLIENT_ID = process.env.CLIENT_ID
 const REDIRECT_URI = process.env.REDIRECT_URI
@@ -53,30 +54,34 @@ app.get('/callback', async (req: Request, res: Response) => {
   }
 
   try {
-    const responseToken: AxiosResponse = await axios({
+    const response: AxiosResponse = await axios({
       method: 'post',
       data,
       headers,
       url: 'https://accounts.spotify.com/api/token'
     })
 
-    if (responseToken.status === 200) {
-      // 3) Use access token to request user data from Spotify API
-      const { access_token: accessToken, token_type: tokenType } = responseToken.data
-
-      try {
-        const responseUser: AxiosResponse = await axios.get('https://api.spotify.com/v1/me', {
-          headers: {
-            Authorization: `${tokenType} ${accessToken}`
-          }
-        })
-        res.send(`<pre>${JSON.stringify(responseUser.data, null, 2)}</pre>`)
-      } catch (error) {
-        res.send(error)
-      }
+    if (response.status === 200) {
+      const { access_token: accessToken, token_type: tokenType } = response.data
+      authorization.set({ tokenType, accessToken })
+      res.redirect('user')
     } else {
-      res.send(responseToken)
+      res.send(response)
     }
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+// 3) Use access token to request user data from Spotify API
+app.get('/user', async (req: Request, res: Response) => {
+  try {
+    const response: AxiosResponse = await axios.get('https://api.spotify.com/v1/me', {
+      headers: {
+        Authorization: authorization.get()
+      }
+    })
+    res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`)
   } catch (error) {
     res.send(error)
   }
