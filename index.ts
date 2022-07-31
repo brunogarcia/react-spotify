@@ -21,6 +21,7 @@ app.get('/', (req: Request, res: Response) => {
   res.redirect('/login')
 })
 
+// 1) Request authorization from Spotify
 app.get('/login', (req: Request, res: Response) => {
   const state = generateRandomString(16)
 
@@ -36,6 +37,7 @@ app.get('/login', (req: Request, res: Response) => {
   res.redirect(`https://accounts.spotify.com/authorize?${params}`)
 })
 
+// 2) Use auth code to request access token
 app.get('/callback', (req: Request, res: Response) => {
   const data = querystring.stringify({
     code: req.query.code || null,
@@ -58,6 +60,7 @@ app.get('/callback', (req: Request, res: Response) => {
   })
     .then((response: AxiosResponse) => {
       if (response.status === 200) {
+        // 3) Use access token to request user data from Spotify API
         const { access_token: accessToken, token_type: tokenType } = response.data
 
         axios.get('https://api.spotify.com/v1/me', {
@@ -80,6 +83,7 @@ app.get('/callback', (req: Request, res: Response) => {
     })
 })
 
+// 4) Request refresh token
 app.get('/refresh_token', (req: Request, res: Response) => {
   const { refresh_token: refreshToken } = req.query
 
