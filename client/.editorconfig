@@ -1,23 +1,5 @@
-# EditorConfig is awesome: https://EditorConfig.org
-
-# top-most EditorConfig file
-root = true
-
-# Unix-style newlines with a newline ending every file
-[*]
-end_of_line = lf
+[*.{tsx,ts,json}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
 insert_final_newline = true
-
-# 4 space indentation
-[*.tsx, *.ts, *.css]
-charset = utf-8
-indent_style = space
-indent_size = 2
-
-# Tab indentation (no size specified)
-[Makefile]
-indent_style = tab
-
-[{package.json}]
-indent_style = space
-indent_size = 2
