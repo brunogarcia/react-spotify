@@ -10,6 +10,8 @@ import ScrollToTop from './hooks/useScroll';
 import { SpotifyUser } from "./types/spotify.model"
 import { getCurrentUserProfile } from './api/spotify'
 
+import { GlobalStyle } from './styles';
+
 import Home from './components/Home';
 import Login from './components/Login';
 import TopArtists from './components/TopArtists';
@@ -40,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+      <GlobalStyle />
       <header className="App-header">
         {!token ? <Login /> : (
           <Router>

@@ -1,14 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
-
-const StyledButton = styled.a`
-  background-color: green;
-  color: white;
-  padding: 10px 20px;
-  margin: 20px auto;
-  border-radius: 30px;
-  display: inline-block;
-`;
+import { StyledButton } from '../styles/ui';
 
 const Login: React.FC = () => {
   return (
