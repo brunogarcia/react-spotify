@@ -1,44 +1,29 @@
 import { useState, useEffect } from 'react';
 import {
-  BrowserRouter as Router,
-  Routes,
   Route,
+  Routes,
+  BrowserRouter as Router,
 } from 'react-router-dom';
 
 import auth from './hooks/auth';
-import ScrollToTop from './hooks/useScroll';
-import { SpotifyUser } from "./types/spotify.model"
-import { getCurrentUserProfile } from './api/spotify'
-
 import { GlobalStyle } from './styles';
+import ScrollToTop from './hooks/useScroll';
 
-import Home from './components/Home';
-import Login from './components/Login';
-import TopArtists from './components/TopArtists';
-import TopTracks from './components/TopTracks';
-import Playlist from './components/Playlist';
-import Playlists from './components/Playlists';
+import {
+  Login,
+  Profile,
+  TopArtists,
+  TopTracks,
+  Playlist,
+  Playlists
+} from './pages';
 
 function App() {
-  const [token, setToken] = useState<string | boolean | null>(null);
-  const [profile, setProfile] = useState<SpotifyUser | null>(null);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     setToken(auth.accessToken);
   }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const user = await getCurrentUserProfile();
-        setProfile(user);
-      } catch(error) {
-        console.error(error);
-      }
-    };
-
-    token && fetchData();
-  }, [token]);
 
   return (
     <div className="App">
@@ -52,7 +37,7 @@ function App() {
               <Route path="/top-tracks" element={<TopTracks />} />
               <Route path="/playlists/:id" element={<Playlist />} />
               <Route path="/playlists" element={<Playlists />} />
-              <Route path="/" element={<Home profile={profile} />} />
+              <Route path="/" element={<Profile />} />
             </Routes>
           </Router>
         )}
