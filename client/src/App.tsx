@@ -18,6 +18,8 @@ import {
   Playlists
 } from './pages';
 
+import Logout from './components/Logout';
+
 function App() {
   const [token, setToken] = useState<string | null>(null);
 
@@ -30,16 +32,19 @@ function App() {
       <GlobalStyle />
       <header className="App-header">
         {!token ? <Login /> : (
-          <Router>
-            <ScrollToTop />
-            <Routes>
-              <Route path="/top-artists" element={<TopArtists />} />
-              <Route path="/top-tracks" element={<TopTracks />} />
-              <Route path="/playlists/:id" element={<Playlist />} />
-              <Route path="/playlists" element={<Playlists />} />
-              <Route path="/" element={<Profile />} />
-            </Routes>
-          </Router>
+          <>
+            <Logout />
+            <Router>
+              <ScrollToTop />
+              <Routes>
+                <Route path="/top-artists" element={<TopArtists />} />
+                <Route path="/top-tracks" element={<TopTracks />} />
+                <Route path="/playlists/:id" element={<Playlist />} />
+                <Route path="/playlists" element={<Playlists />} />
+                <Route path="/" element={<Profile />} />
+              </Routes>
+            </Router>
+          </>
         )}
       </header>
     </div>
