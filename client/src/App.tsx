@@ -1,7 +1,15 @@
 import { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom';
+
 import auth from './hooks/auth';
-import { getCurrentUserProfile } from './api/spotify'
+import ScrollToTop from './hooks/useScroll';
 import { SpotifyUser } from "./types/spotify.model"
+import { getCurrentUserProfile } from './api/spotify'
+
 import './App.css';
 
 function App() {
@@ -33,18 +41,38 @@ function App() {
             Log in to Spotify
           </a>
         ) : (
-          <>
-            <button onClick={auth.logout}>Log Out</button>
-            {profile && (
-              <div>
-                <h1>{profile.display_name}</h1>
-                <p>{profile.followers.total} Followers</p>
-                {profile.images.length && profile.images[0].url && (
-                  <img src={profile.images[0].url} alt="Avatar"/>
-                )}
-              </div>
-            )}
-          </>
+          <Router>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/top-artists">
+                <h1>Top Artists</h1>
+              </Route>
+              <Route path="/top-tracks">
+                <h1>Top Tracks</h1>
+              </Route>
+              <Route path="/playlists/:id">
+                <h1>Playlist</h1>
+              </Route>
+              <Route path="/playlists">
+                <h1>Playlists</h1>
+              </Route>
+              <Route path="/">
+                <>
+                  <button onClick={auth.logout}>Log Out</button>
+
+                  {profile && (
+                    <div>
+                      <h1>{profile.display_name}</h1>
+                      <p>{profile.followers.total} Followers</p>
+                      {profile.images.length && profile.images[0].url && (
+                        <img src={profile.images[0].url} alt="Avatar"/>
+                      )}
+                    </div>
+                  )}
+                </>
+              </Route>
+            </Routes>
+          </Router>
         )}
       </header>
     </div>
