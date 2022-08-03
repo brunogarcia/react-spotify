@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { StyledHeader } from "../styles";
-import { SpotifyUser, SpotifyPlaylists } from "../types/spotify.model";
+import { SectionWrapper, ArtistsGrid } from '../components';
+import { SpotifyUser, SpotifyPlaylists, SpotifyUserTopArtists } from "../types/spotify.model";
 import {
+  getTopArtists,
   getCurrentUserProfile,
   getCurrentUserPlaylists,
 } from "../api/spotify.api";
@@ -9,6 +11,7 @@ import {
 const Profile = () => {
   const [profile, setProfile] = useState<SpotifyUser | null>(null);
   const [playlists, setPlaylists] = useState<SpotifyPlaylists | null>(null);
+  const [topArtists, setTopArtists] = useState<SpotifyUserTopArtists | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +21,9 @@ const Profile = () => {
 
         const userPlaylists = await getCurrentUserPlaylists();
         setPlaylists(userPlaylists);
+
+        const userTopArtist = await getTopArtists({ time_range: "short_term"});
+        setTopArtists(userTopArtist);
       } catch (error) {
         console.error(error);
       }
@@ -60,6 +66,14 @@ const Profile = () => {
               </div>
             </div>
           </StyledHeader>
+
+          {topArtists && (
+            <main>
+              <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
+                <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
+              </SectionWrapper>
+            </main>
+          )}
         </>
       )}
     </>

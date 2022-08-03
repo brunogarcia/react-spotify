@@ -1,4 +1,4 @@
-import type { QueryParams } from "../../types/global";
+import type { QueryParams } from "../../types/global.model";
 import { LOCALSTORAGE_KEYS } from "./local-storage";
 
 /**

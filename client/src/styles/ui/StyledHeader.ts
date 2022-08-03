@@ -1,8 +1,5 @@
 import styled from "styled-components/macro";
-
-interface HeaderProps {
-  type: "user";
-}
+import { SectionType } from "../../types/global.model";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -50,7 +47,7 @@ const StyledHeader = styled.header`
     margin-right: var(--spacing-lg);
     box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
     background-color: var(--dark-grey);
-    border-radius: ${(props: HeaderProps) =>
+    border-radius: ${(props: SectionType) =>
       props.type === "user" ? "50%" : "0"};
 
     @media (min-width: 768px) {

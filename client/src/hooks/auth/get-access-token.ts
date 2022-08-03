@@ -1,6 +1,6 @@
 import { initAuth } from "./init-auth";
 import { refreshToken } from "./refresh-token";
-import type { QueryParams } from "../../types/global";
+import type { QueryParams } from "../../types/global.model";
 import { hasTokenExpired } from "./has-token-expired";
 import { LOCALSTORAGE_KEYS, LOCALSTORAGE_VALUES } from "./local-storage";
 

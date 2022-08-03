@@ -14,7 +14,7 @@ import {
   Playlists,
 } from "./pages";
 
-import Logout from "./components/Logout";
+import { Logout } from "./components";
 
 function App() {
   const [token, setToken] = useState<string | null>(null);

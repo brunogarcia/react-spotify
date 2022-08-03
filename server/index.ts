@@ -16,7 +16,11 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET
 // Authorization Code Flow
 // https://developer.spotify.com/documentation/general/guides/authorization/code-flow/
 const stateKey = 'spotify_auth_state'
-const scope = 'user-read-private user-read-email'
+const scope = [
+  'user-read-private',
+  'user-read-email',
+  'user-top-read'
+].join(' ')
 
 app.get('/', (req: Request, res: Response) => {
   res.redirect('/login')

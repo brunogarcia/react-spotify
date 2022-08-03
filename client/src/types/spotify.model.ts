@@ -44,11 +44,15 @@ interface SpotifyAlbum {
   uri: string;
 }
 
-interface SpotifyArtist {
+export interface SpotifyArtist {
   external_urls: SpotifyExternalUrls;
+  followers: SpotifyFollowers;
+  genres: string[];
   href: string;
   id: string;
+  images: SpotifyImage[];
   name: string;
+  popularity: number;
   type: string;
   uri: string;
 }
@@ -137,4 +141,25 @@ export interface SpotifyPlaylists {
   offset: number;
   previous: string;
   total: number;
+}
+
+export interface SpotifyUserTopItems {
+  href: string;
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+}
+
+export interface SpotifyUserTopArtists extends SpotifyUserTopItems {
+  items: SpotifyArtist[];
+}
+
+export interface SpotifyUserTopTracks extends SpotifyUserTopItems {
+  items: SpotifyTrack[];
+}
+
+export interface ParamsUserTopItems  {
+  time_range: "short_term" | "medium_term" | "long_term";
 }
