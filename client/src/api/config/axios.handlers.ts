@@ -1,19 +1,21 @@
-import { LOCALSTORAGE_KEYS } from '../../hooks/auth/local-storage';
+import { LOCALSTORAGE_KEYS } from "../../hooks/auth/local-storage";
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export interface ApiError {
-    error_message: string;
+  error_message: string;
 }
 
 export enum ApiErrorCode {
-EXPIRED_SIGNATURE = "Expired signature",
+  EXPIRED_SIGNATURE = "Expired signature",
 }
 
 export function handleRequest(config: AxiosRequestConfig) {
-  const accessToken = window.localStorage.getItem(LOCALSTORAGE_KEYS.accessToken)
+  const accessToken = window.localStorage.getItem(
+    LOCALSTORAGE_KEYS.accessToken
+  );
   if (accessToken && config.headers) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
-    config.headers['Content-Type'] = 'application/json';
+    config.headers["Content-Type"] = "application/json";
   }
 
   return config;

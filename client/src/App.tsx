@@ -1,13 +1,9 @@
-import { useState, useEffect } from 'react';
-import {
-  Route,
-  Routes,
-  BrowserRouter as Router,
-} from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-import auth from './hooks/auth';
-import { GlobalStyle } from './styles';
-import ScrollToTop from './hooks/useScroll';
+import auth from "./hooks/auth";
+import { GlobalStyle } from "./styles";
+import ScrollToTop from "./hooks/useScroll";
 
 import {
   Login,
@@ -15,10 +11,10 @@ import {
   TopArtists,
   TopTracks,
   Playlist,
-  Playlists
-} from './pages';
+  Playlists,
+} from "./pages";
 
-import Logout from './components/Logout';
+import Logout from "./components/Logout";
 
 function App() {
   const [token, setToken] = useState<string | null>(null);
@@ -31,7 +27,9 @@ function App() {
     <div className="App">
       <GlobalStyle />
       <header className="App-header">
-        {!token ? <Login /> : (
+        {!token ? (
+          <Login />
+        ) : (
           <>
             <Logout />
             <Router>
