@@ -1,5 +1,5 @@
 import axios from "./config/axios.config"
-import { SpotifyUser, SpotifyPlaylist } from "../types/spotify.model"
+import { SpotifyUser, SpotifyPlaylists } from "../types/spotify.model"
 
 /**
  * Get Current User's Profile
@@ -20,11 +20,11 @@ import { SpotifyUser, SpotifyPlaylist } from "../types/spotify.model"
  * Get a List of Current User's Playlists
  *
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-a-list-of-current-users-playlists
- * @returns {Promise<SpotifyPlaylist>} Current User's Playlists
+ * @returns {Promise<SpotifyPlaylists>} Current User's Playlists
  */
-export const getCurrentUserPlaylists = async (limit = 20): Promise<SpotifyPlaylist> => {
+export const getCurrentUserPlaylists = async (limit = 20): Promise<SpotifyPlaylists> => {
   try {
-    const { data } = await axios.get<SpotifyPlaylist>(`/me/playlists?limit=${limit}`);
+    const { data } = await axios.get<SpotifyPlaylists>(`/me/playlists?limit=${limit}`);
     return data;
   } catch(error) {
     throw error;

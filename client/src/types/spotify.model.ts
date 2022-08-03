@@ -53,46 +53,48 @@ interface SpotifyArtist {
   uri: string
 }
 
-interface SpotifyTrackItem {
-  added_at: string
-  added_by: {
-    external_urls: {
-      spotify: string
-    }
-    href: string
-    id: string
-    type: string
-    uri: string
-  }
+interface SpotifyTrackDetails {
+  album: SpotifyAlbum
+  artists: SpotifyArtist
+  available_markets: string[]
+  disc_number: number
+  duration_ms: number
+  explicit: boolean
+  external_urls: SpotifyExternalUrls
+  href: string
+  id: string
   is_local: boolean
-  track: {
-    album: SpotifyAlbum
-    artists: SpotifyArtist
-    available_markets: string[]
-    disc_number: number
-    duration_ms: number
-    explicit: boolean
-    external_urls: SpotifyExternalUrls
-    href: string
-    id: string
-    is_local: boolean
-    name: string
-    popularity: number
-    preview_url: string
-    track_number: number
-    type: string
-    uri: string
-  }
+  name: string
+  popularity: number
+  preview_url: string
+  track_number: number
+  type: string
+  uri: string
+}
+
+interface SpotifyAddedBy {
+  external_urls: SpotifyExternalUrls
+  href: string
+  id: string
+  type: string
+  uri: string
 }
 
 interface SpotifyTrack {
+  added_at: string
+  added_by: SpotifyAddedBy
+  is_local: boolean
+  track: SpotifyTrackDetails
+}
+
+interface SpotifyTracks {
   href: string
   total: number
   limit: number
   next: string
   offset: number
   previous: string
-  items: SpotifyTrackItem[]
+  items: SpotifyTrack[]
 }
 
 export interface SpotifyUser {
@@ -110,7 +112,7 @@ export interface SpotifyUser {
   uri: string
 }
 
-export interface SpotifyPlaylistItem {
+export interface SpotifyPlaylist {
   collaborative: boolean
   description: string
   external_urls: SpotifyExternalUrls
@@ -122,14 +124,14 @@ export interface SpotifyPlaylistItem {
   owner: SpotifyOwner
   public: boolean
   snapshot_id: string
-  tracks: SpotifyTrack[]
+  tracks: SpotifyTracks
   type: string
   uri: string
 }
 
-export interface SpotifyPlaylist {
+export interface SpotifyPlaylists {
   href: string
-  items: SpotifyPlaylistItem[]
+  items: SpotifyPlaylist[]
   limit: number
   next: string
   offset: number

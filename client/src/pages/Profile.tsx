@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { StyledHeader } from '../styles';
-import { SpotifyUser, SpotifyPlaylist } from "../types/spotify.model"
+import { SpotifyUser, SpotifyPlaylists } from "../types/spotify.model"
 import { getCurrentUserProfile, getCurrentUserPlaylists } from '../api/spotify'
 
 const Profile = () => {
   const [profile, setProfile] = useState<SpotifyUser | null>(null);
-  const [playlists, setPlaylists] = useState<SpotifyPlaylist | null>(null);
+  const [playlists, setPlaylists] = useState<SpotifyPlaylists | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,13 +23,15 @@ const Profile = () => {
     fetchData();
   }, []);
 
+  const existsUserImage = profile && profile.images.length && profile.images[0].url;
+
   return (
     <>
       {profile && (
         <>
           <StyledHeader type="user">
             <div className="header__inner">
-              {profile.images.length && profile.images[0].url && (
+              {existsUserImage && (
                 <img className="header__img" src={profile.images[0].url} alt="Avatar"/>
               )}
               <div>
