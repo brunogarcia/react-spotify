@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import auth from "../../hooks/auth";
+import auth from "../../hooks/useAuth";
 
 const StyledButton = styled.button`
   position: absolute;

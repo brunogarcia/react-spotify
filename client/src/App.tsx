@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-import auth from "./hooks/auth";
+import auth from "./hooks/useAuth";
 import { GlobalStyle } from "./styles";
 import ScrollToTop from "./hooks/useScroll";
 

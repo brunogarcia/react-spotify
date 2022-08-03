@@ -1,4 +1,4 @@
-import { LOCALSTORAGE_KEYS } from "../../hooks/auth/local-storage";
+import { LOCALSTORAGE_KEYS } from "../../hooks/useAuth/local-storage";
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export interface ApiError {
