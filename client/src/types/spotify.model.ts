@@ -161,5 +161,6 @@ export interface SpotifyUserTopTracks extends SpotifyUserTopItems {
 }
 
 export interface ParamsUserTopItems  {
+  limit: number;
   time_range: "short_term" | "medium_term" | "long_term";
 }

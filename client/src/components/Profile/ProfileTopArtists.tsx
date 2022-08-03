@@ -11,7 +11,7 @@ const ProfileTopArtists = (props: ProfileTopArtistsProps) => {
   return (
     <main>
       <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
-        <ArtistsGrid artists={topArtists.items.slice(0, 10)} />
+        <ArtistsGrid artists={topArtists.items} />
       </SectionWrapper>
     </main>
   );

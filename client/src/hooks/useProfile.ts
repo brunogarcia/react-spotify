@@ -24,7 +24,7 @@ const useProfile = () => {
         const userPlaylists = await getCurrentUserPlaylists();
         setPlaylists(userPlaylists);
 
-        const userTopArtist = await getTopArtists({ time_range: "short_term"});
+        const userTopArtist = await getTopArtists({ time_range: "short_term", limit: 10 });
         setTopArtists(userTopArtist);
       } catch (error) {
         console.error(error);
