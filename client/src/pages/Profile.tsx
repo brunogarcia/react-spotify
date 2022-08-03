@@ -1,6 +1,5 @@
 import useProfile from "../hooks/useProfile";
-import ProfileHeader from "../components/ProfileHeader";
-import ProfileTopArtists from "../components/ProfileTopArtists";
+import { ProfileHeader, ProfileTopArtists } from "../components";
 
 const Profile = () => {
   const { profile, playlists, topArtists } = useProfile();

@@ -1,5 +1,5 @@
-import { SectionWrapper, ArtistsGrid } from '../components';
-import { SpotifyUserTopArtists } from "../types/spotify.model";
+import { SectionWrapper, ArtistsGrid } from '../../components';
+import { SpotifyUserTopArtists } from "../../types/spotify.model";
 
 interface ProfileTopArtistsProps {
   topArtists: SpotifyUserTopArtists;

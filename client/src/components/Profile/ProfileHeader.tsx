@@ -1,5 +1,5 @@
-import { StyledHeader } from "../styles";
-import { SpotifyUser, SpotifyPlaylists } from "../types/spotify.model";
+import { StyledHeader } from "../../styles";
+import { SpotifyUser, SpotifyPlaylists } from "../../types/spotify.model";
 
 interface ProfileHeaderProps {
   profile: SpotifyUser;
