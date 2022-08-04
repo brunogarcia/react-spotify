@@ -2,18 +2,14 @@ import { SectionWrapper, ArtistsGrid } from '../../components';
 import { SpotifyUserTopArtists } from "../../types/spotify.model";
 
 interface ProfileTopArtistsProps {
-  topArtists: SpotifyUserTopArtists;
+  artists: SpotifyUserTopArtists;
 }
 
-const ProfileTopArtists = (props: ProfileTopArtistsProps) => {
-  const { topArtists } = props;
-
+const ProfileTopArtists = ({ artists }: ProfileTopArtistsProps) => {
   return (
-    <main>
-      <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
-        <ArtistsGrid artists={topArtists.items} />
-      </SectionWrapper>
-    </main>
+    <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
+      <ArtistsGrid artists={artists.items} />
+    </SectionWrapper>
   );
 };
 
