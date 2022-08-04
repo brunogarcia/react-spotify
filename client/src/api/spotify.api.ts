@@ -1,5 +1,11 @@
 import axios from "./config/axios.config";
-import { SpotifyUser, SpotifyPlaylists, SpotifyUserTopArtists, ParamsUserTopItems } from "../types/spotify.model";
+import {
+  SpotifyUser,
+  SpotifyPlaylists,
+  SpotifyUserTopTracks,
+  SpotifyUserTopArtists,
+  SpotifyUserTopItemsParams,
+} from "../types/spotify.model";
 
 /**
  * Get Current User's Profile
@@ -25,10 +31,12 @@ export const getCurrentUserProfile = async (): Promise<SpotifyUser> => {
 export const getCurrentUserPlaylists = async (
   limit = 20
 ): Promise<SpotifyPlaylists> => {
+  const params = {
+    limit,
+  };
+
   try {
-    const { data } = await axios.get<SpotifyPlaylists>(
-      `/me/playlists?limit=${limit}`
-    );
+    const { data } = await axios.get<SpotifyPlaylists>("/me/playlists", { params });
     return data;
   } catch (error) {
     throw error;
@@ -38,18 +46,41 @@ export const getCurrentUserPlaylists = async (
 /**
  * Get a User's Top Artists
  *
+ * @param {SpotifyUserTopItemsParams} payload - Params for get user's top artists
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
- * @param {ParamsUserTopItems} payload - Params for get user's top artists
  * @returns {Promise<SpotifyUserTopArtists>} User's Top Artists
  */
-export const getTopArtists = async (payload: ParamsUserTopItems): Promise<SpotifyUserTopArtists> => {
+export const getTopArtists = async (payload: SpotifyUserTopItemsParams): Promise<SpotifyUserTopArtists> => {
   const { time_range = "short_term", limit = 10 } = payload;
   const params = {
     limit,
     time_range,
   };
+
   try {
-    const { data } = await axios.get<SpotifyUserTopArtists>(`/me/top/artists`, { params });
+    const { data } = await axios.get<SpotifyUserTopArtists>("/me/top/artists", { params });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/**
+ * Get a User's Top Tracks
+ *
+ * @param {SpotifyUserTopItemsParams} payload - Params for get user's top tracks
+ * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
+ * @returns {Promise<SpotifyUserTopTracks>} User's Top Tracks
+ */
+ export const getTopTracks = async (payload: SpotifyUserTopItemsParams): Promise<SpotifyUserTopTracks> => {
+  const { time_range = "short_term", limit = 10 } = payload;
+  const params = {
+    limit,
+    time_range,
+  };
+
+  try {
+    const { data } = await axios.get<SpotifyUserTopTracks>("/me/top/tracks", { params });
     return data;
   } catch (error) {
     throw error;
