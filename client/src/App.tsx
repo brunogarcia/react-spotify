@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
-import auth from "./hooks/useAuth";
 import { GlobalStyle } from "./styles";
+import useToken from "./hooks/useToken";
 import ScrollToTop from "./hooks/useScroll";
 
 import {
   Login,
+  LoginCallback,
   Profile,
   TopArtists,
   TopTracks,
@@ -17,11 +17,7 @@ import {
 import { Logout } from "./components";
 
 function App() {
-  const [token, setToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    setToken(auth.accessToken);
-  }, []);
+  const { token } = useToken();
 
   return (
     <div className="App">
@@ -39,6 +35,7 @@ function App() {
                 <Route path="/top-tracks" element={<TopTracks />} />
                 <Route path="/playlists/:id" element={<Playlist />} />
                 <Route path="/playlists" element={<Playlists />} />
+                <Route path="/callback" element={<LoginCallback />} />
                 <Route path="/" element={<Profile />} />
               </Routes>
             </Router>

@@ -73,7 +73,7 @@ app.get('/callback', async (req: Request, res: Response) => {
         expires_in: expiresIn
       })
 
-      res.redirect(`http://localhost:3000/?${queryParams}`)
+      res.redirect(`http://localhost:3000/callback?${queryParams}`)
     } else {
       res.redirect(`/?${querystring.stringify({ error: 'invalid_token' })}`)
     }
