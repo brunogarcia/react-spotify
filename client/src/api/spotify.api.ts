@@ -29,7 +29,7 @@ export const getCurrentUserProfile = async (): Promise<SpotifyUser> => {
  * @returns {Promise<SpotifyPlaylists>} Current User's Playlists
  */
 export const getCurrentUserPlaylists = async (
-  limit = 20
+  limit = 10
 ): Promise<SpotifyPlaylists> => {
   const params = {
     limit,

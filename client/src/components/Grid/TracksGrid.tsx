@@ -3,7 +3,7 @@ import { StyledTrackList } from '../../styles';
 import { SpotifyTrack } from "../../types/spotify.model";
 
 interface TracksGridProps {
-  tracks: SpotifyTrack[];
+  tracks: SpotifyTrack[] | null;
 }
 
 const TracksGrid = ({ tracks }: TracksGridProps) => (

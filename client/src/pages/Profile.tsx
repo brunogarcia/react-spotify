@@ -1,4 +1,9 @@
-import { ProfileHeader, ProfileTopArtists, ProfileTopTracks } from "../components";
+import {
+  ProfileHeader,
+  ProfileTopArtists,
+  ProfileTopTracks,
+  ProfilePlaylists,
+} from "../components";
 
 const Profile = () => {
   return (
@@ -7,6 +12,7 @@ const Profile = () => {
       <main>
         <ProfileTopArtists />
         <ProfileTopTracks />
+        <ProfilePlaylists />
       </main>
     </>
   );

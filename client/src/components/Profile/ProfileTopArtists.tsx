@@ -1,5 +1,4 @@
 import useTopArtists from "../../hooks/useTopArtists";
-
 import { SectionWrapper, ArtistsGrid } from '../../components';
 
 const ProfileTopArtists = () => {
