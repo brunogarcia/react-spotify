@@ -5,7 +5,7 @@ import {
   ProfilePlaylists,
 } from "../components";
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <>
       <ProfileHeader />
@@ -18,4 +18,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

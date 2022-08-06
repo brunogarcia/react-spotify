@@ -8,7 +8,10 @@ const useTopArtists = (payload: SpotifyPayload) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTopArtists(payload);
+        const data = await getTopArtists({
+          limit: payload.limit,
+          time_range: payload.time_range,
+        });
         setTopArtists(data);
       } catch (error) {
         console.error(error);
@@ -16,7 +19,7 @@ const useTopArtists = (payload: SpotifyPayload) => {
     };
 
     fetchData();
-  }, [payload]);
+  }, [payload.time_range, payload.limit]);
 
   return { topArtists };
 }
