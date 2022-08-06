@@ -1,14 +1,12 @@
-import useProfile from "../hooks/useProfile";
 import { ProfileHeader, ProfileTopArtists, ProfileTopTracks } from "../components";
 
 const Profile = () => {
-  const { profile, playlists, topArtists, topTracks } = useProfile();
   return (
     <>
-      {profile && <ProfileHeader profile={profile} playlists={playlists} />}
+      <ProfileHeader />
       <main>
-        {topArtists && <ProfileTopArtists artists={topArtists} />}
-        {topTracks && <ProfileTopTracks tracks={topTracks} />}
+        <ProfileTopArtists />
+        <ProfileTopTracks />
       </main>
     </>
   );

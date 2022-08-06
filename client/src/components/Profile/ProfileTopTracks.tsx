@@ -1,14 +1,11 @@
-import { SpotifyUserTopTracks } from "../../types/spotify.model";
+import useTopTracks from "../../hooks/useTopTracks";
 import { SectionWrapper, TracksGrid } from '../../components';
 
-interface ProfileTopArtistsProps {
-  tracks: SpotifyUserTopTracks;
-}
-
-const ProfileTopTracks = ({ tracks }: ProfileTopArtistsProps) => {
+const ProfileTopTracks = () => {
+  const { topTracks } = useTopTracks();
   return (
     <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
-      <TracksGrid tracks={tracks.items} />
+      { topTracks && <TracksGrid tracks={topTracks.items} /> }
     </SectionWrapper>
   );
 };

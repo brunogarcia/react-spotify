@@ -1,22 +1,18 @@
 import { StyledHeader } from "../../styles";
-import { SpotifyUser, SpotifyPlaylists } from "../../types/spotify.model";
+import useUserProfile from "../../hooks/useUserProfile";
+import useUserPlaylists from "../../hooks/useUserPlaylists";
 
-interface ProfileHeaderProps {
-  profile: SpotifyUser;
-  playlists: SpotifyPlaylists | null;
-}
-
-const ProfileHeader = (props: ProfileHeaderProps) => {
-  const { profile, playlists } = props;
-
-  const existsProfileImage =
-    profile && profile.images.length && profile.images[0].url;
+const ProfileHeader = () => {
+  const { profile } = useUserProfile();
+  const { playlists } = useUserPlaylists();
+  const profileImage = profile?.images.length && profile.images[0].url;
 
   return (
     <>
+    {profile && (
       <StyledHeader type="user">
         <div className="header__inner">
-          {existsProfileImage && (
+          {profileImage && (
             <img
               className="header__img"
               src={profile.images[0].url}
@@ -41,6 +37,7 @@ const ProfileHeader = (props: ProfileHeaderProps) => {
           </div>
         </div>
       </StyledHeader>
+    )}
     </>
   );
 };
