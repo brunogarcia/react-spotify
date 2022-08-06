@@ -12,6 +12,7 @@ const TimeRangeButtons = ({ activeRange, setActiveRange }: TimeRangeButtonsProps
     <StyledRangeButtons>
       <li>
         <button
+          type='button'
           className={activeRange === 'short_term' ? 'active' : ''}
           onClick={() => setActiveRange('short_term')}>
           This Month
@@ -19,6 +20,7 @@ const TimeRangeButtons = ({ activeRange, setActiveRange }: TimeRangeButtonsProps
       </li>
       <li>
         <button
+          type='button'
           className={activeRange === 'medium_term' ? 'active' : ''}
           onClick={() => setActiveRange('medium_term')}>
           Last 6 Months
@@ -26,6 +28,7 @@ const TimeRangeButtons = ({ activeRange, setActiveRange }: TimeRangeButtonsProps
       </li>
       <li>
         <button
+          type='button'
           className={activeRange === 'long_term' ? 'active' : ''}
           onClick={() => setActiveRange('long_term')}>
           All Time
