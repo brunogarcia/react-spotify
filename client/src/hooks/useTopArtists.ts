@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { SpotifyUserTopArtists } from "../types/spotify.model";
 import { getTopArtists } from "../api/spotify.api";
+import { SpotifyUserTopArtists, SpotifyPayload } from "../types/spotify.model";
 
-const useTopArtists = () => {
+const useTopArtists = (payload: SpotifyPayload) => {
   const [topArtists, setTopArtists] = useState<SpotifyUserTopArtists | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userTopArtist = await getTopArtists({ time_range: "short_term", limit: 10 });
+        const userTopArtist = await getTopArtists(payload);
         setTopArtists(userTopArtist);
       } catch (error) {
         console.error(error);
@@ -16,7 +16,7 @@ const useTopArtists = () => {
     };
 
     fetchData();
-  }, []);
+  }, [payload]);
 
   return { topArtists };
 }

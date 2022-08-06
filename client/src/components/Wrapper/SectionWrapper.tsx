@@ -5,7 +5,7 @@ interface SectionWrapperProps {
   children: React.ReactNode;
   title?: string;
   seeAllLink?: string;
-  breadcrumb?: string;
+  breadcrumb?: boolean;
 }
 
 const SectionWrapper = ({ children, title, seeAllLink, breadcrumb }: SectionWrapperProps) => (

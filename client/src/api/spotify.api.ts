@@ -4,7 +4,7 @@ import {
   SpotifyPlaylists,
   SpotifyUserTopTracks,
   SpotifyUserTopArtists,
-  SpotifyUserTopItemsParams,
+  SpotifyPayload,
 } from "../types/spotify.model";
 
 /**
@@ -46,11 +46,11 @@ export const getCurrentUserPlaylists = async (
 /**
  * Get a User's Top Artists
  *
- * @param {SpotifyUserTopItemsParams} payload - Params for get user's top artists
+ * @param {SpotifyPayload} payload - Params for get user's top artists
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @returns {Promise<SpotifyUserTopArtists>} User's Top Artists
  */
-export const getTopArtists = async (payload: SpotifyUserTopItemsParams): Promise<SpotifyUserTopArtists> => {
+export const getTopArtists = async (payload: SpotifyPayload): Promise<SpotifyUserTopArtists> => {
   const { time_range = "short_term", limit = 10 } = payload;
   const params = {
     limit,
@@ -68,11 +68,11 @@ export const getTopArtists = async (payload: SpotifyUserTopItemsParams): Promise
 /**
  * Get a User's Top Tracks
  *
- * @param {SpotifyUserTopItemsParams} payload - Params for get user's top tracks
+ * @param {SpotifyPayload} payload - Params for get user's top tracks
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @returns {Promise<SpotifyUserTopTracks>} User's Top Tracks
  */
- export const getTopTracks = async (payload: SpotifyUserTopItemsParams): Promise<SpotifyUserTopTracks> => {
+ export const getTopTracks = async (payload: SpotifyPayload): Promise<SpotifyUserTopTracks> => {
   const { time_range = "short_term", limit = 10 } = payload;
   const params = {
     limit,

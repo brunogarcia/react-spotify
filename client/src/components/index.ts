@@ -11,3 +11,5 @@ export { default as ProfileTopTracks } from './Profile/ProfileTopTracks';
 export { default as ProfileTopArtists } from './Profile/ProfileTopArtists';
 export { default as ProfilePlaylists } from './Profile/ProfilePlaylists';
 
+export { default as TopArtists } from './Artists/TopArtists';
+export { default as TimeRangeButtons } from './Commons/TimeRangeButtons';

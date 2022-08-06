@@ -1,7 +1,9 @@
-import React from "react";
+import { TopArtists } from "../components";
 
-const TopArtists: React.FC = () => {
-  return <h1>Top Artists</h1>;
+const TopArtistsPage = () => {
+  return (
+    <TopArtists />
+  );
 };
 
-export default TopArtists;
+export default TopArtistsPage;

@@ -38,8 +38,3 @@ export interface SpotifyUserTopArtists extends SpotifyUserTopItems {
 export interface SpotifyUserTopTracks extends SpotifyUserTopItems {
   items: SpotifyTrack[];
 }
-
-export interface SpotifyUserTopItemsParams  {
-  limit: number;
-  time_range: "short_term" | "medium_term" | "long_term";
-}
