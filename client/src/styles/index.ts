@@ -1,4 +1,10 @@
 export { default as GlobalStyle } from "./global";
+
+// Login page
+export { default as StyledLoginButton } from "./ui/StyledLoginButton";
+export { default as StyledLoginContainer } from "./ui/StyledLoginContainer";
+
+// Commons
 export { default as StyledGrid } from "./ui/StyledGrid";
 export { default as StyledHeader } from "./ui/StyledHeader";
 export { default as StyledSection } from "./ui/StyledSection";
