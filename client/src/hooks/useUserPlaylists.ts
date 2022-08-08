@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {  SpotifyPlaylists } from "../types/spotify.model";
-import { getCurrentUserPlaylists } from "../api/spotify.api";
+import { getUserPlaylists } from "../api/spotify.api";
 
 const useUserPlaylists = () => {
   const [playlists, setPlaylists] = useState<SpotifyPlaylists | null>(null);
@@ -8,7 +8,7 @@ const useUserPlaylists = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userPlaylists = await getCurrentUserPlaylists();
+        const userPlaylists = await getUserPlaylists();
         setPlaylists(userPlaylists);
       } catch (error) {
         console.error(error);
