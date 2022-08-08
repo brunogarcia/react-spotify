@@ -1,6 +1,6 @@
 import { StyledRangeButtons } from '../../styles';
+import { StyleButton } from "../../types/global.model";
 import { SpotifyTimeRange } from "../../types/spotify.model";
-
 
 interface TimeRangeButtonsProps {
   activeRange: SpotifyTimeRange;
@@ -8,29 +8,33 @@ interface TimeRangeButtonsProps {
 }
 
 const TimeRangeButtons = ({ activeRange, setActiveRange }: TimeRangeButtonsProps) => {
+  const isActiveShortTerm = activeRange === SpotifyTimeRange.SHORT_TERM;
+  const isActiveMediumTerm = activeRange === SpotifyTimeRange.MEDIUM_TERM;
+  const isActiveLongTerm = activeRange === SpotifyTimeRange.LONG_TERM;
+
   return (
-    <StyledRangeButtons>
+    <StyledRangeButtons data-testid="time-range-buttons">
       <li>
         <button
           type='button'
-          className={activeRange === 'short_term' ? 'active' : ''}
-          onClick={() => setActiveRange('short_term')}>
+          className={isActiveShortTerm ? StyleButton.ACTIVE : StyleButton.INACTIVE}
+          onClick={() => setActiveRange(SpotifyTimeRange.SHORT_TERM)}>
           This Month
         </button>
       </li>
       <li>
         <button
           type='button'
-          className={activeRange === 'medium_term' ? 'active' : ''}
-          onClick={() => setActiveRange('medium_term')}>
+          className={isActiveMediumTerm ? StyleButton.ACTIVE : StyleButton.INACTIVE}
+          onClick={() => setActiveRange(SpotifyTimeRange.MEDIUM_TERM)}>
           Last 6 Months
         </button>
       </li>
       <li>
         <button
           type='button'
-          className={activeRange === 'long_term' ? 'active' : ''}
-          onClick={() => setActiveRange('long_term')}>
+          className={isActiveLongTerm ? StyleButton.ACTIVE : StyleButton.INACTIVE}
+          onClick={() => setActiveRange(SpotifyTimeRange.LONG_TERM)}>
           All Time
         </button>
       </li>

@@ -1,7 +1,7 @@
 import { SpotifyTrack } from "../types/spotify.model";
 import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
 import { getMockAlbum } from "./albums";
-import getMockArtists from "./artists";
+import { getMockArtists } from "./artists";
 
 export default function getMockTracks(): SpotifyTrack[] {
   return [

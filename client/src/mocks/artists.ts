@@ -1,4 +1,6 @@
-export default function getMockArtists() {
+import { SpotifyArtist } from '../types/spotify.model';
+
+export function getMockArtists(): SpotifyArtist[] {
   return [
     {
       external_urls: {
@@ -43,4 +45,18 @@ export default function getMockArtists() {
       uri: "test"
     }
   ]
+}
+
+export function getMockTopArtists() {
+  return {
+    topArtists: {
+      href: "test",
+      limit: 10,
+      next: "test",
+      offset: 0,
+      previous: "test",
+      total: 10,
+      items: getMockArtists()
+    }
+  }
 }

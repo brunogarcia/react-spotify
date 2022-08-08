@@ -5,6 +5,7 @@ import {
   SpotifyUserTopTracks,
   SpotifyUserTopArtists,
   SpotifyPayload,
+  SpotifyTimeRange,
 } from "../types/spotify.model";
 
 /**
@@ -51,7 +52,11 @@ export const getCurrentUserPlaylists = async (
  * @returns {Promise<SpotifyUserTopArtists>} User's Top Artists
  */
 export const getTopArtists = async (payload: SpotifyPayload): Promise<SpotifyUserTopArtists> => {
-  const { time_range = "short_term", limit = 10 } = payload;
+  const {
+    limit = 10,
+    time_range = SpotifyTimeRange.SHORT_TERM,
+  } = payload;
+
   const params = {
     limit,
     time_range,
@@ -73,7 +78,11 @@ export const getTopArtists = async (payload: SpotifyPayload): Promise<SpotifyUse
  * @returns {Promise<SpotifyUserTopTracks>} User's Top Tracks
  */
  export const getTopTracks = async (payload: SpotifyPayload): Promise<SpotifyUserTopTracks> => {
-  const { time_range = "short_term", limit = 10 } = payload;
+  const {
+    limit = 10,
+    time_range = SpotifyTimeRange.SHORT_TERM,
+  } = payload;
+
   const params = {
     limit,
     time_range,

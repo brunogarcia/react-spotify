@@ -1,8 +1,11 @@
 import useTopArtists from "../../hooks/useTopArtists";
-import { SpotifyPayload } from "../../types/spotify.model";
 import { SectionWrapper, ArtistsGrid } from '../../components';
+import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 
-const payload: SpotifyPayload = { time_range: "short_term", limit: 10 };
+const payload: SpotifyPayload = {
+  limit: 10,
+  time_range: SpotifyTimeRange.SHORT_TERM,
+};
 
 const ProfileTopArtists = () => {
   const { topArtists } = useTopArtists(payload);

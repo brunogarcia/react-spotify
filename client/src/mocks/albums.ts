@@ -1,5 +1,5 @@
 import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
-import getMockArtists from "./artists";
+import { getMockArtists } from "./artists";
 
 export function getMockAlbums(): SpotifyAlbum[] {
   return [
