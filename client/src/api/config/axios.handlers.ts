@@ -1,4 +1,4 @@
-import { LOCALSTORAGE_KEYS } from "../../hooks/useAuth/local-storage";
+import { useAuth } from "../../hooks";
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export interface ApiError {
@@ -11,7 +11,7 @@ export enum ApiErrorCode {
 
 export function handleRequest(config: AxiosRequestConfig) {
   const accessToken = window.localStorage.getItem(
-    LOCALSTORAGE_KEYS.accessToken
+    useAuth.localStorageKeys.accessToken
   );
   if (accessToken && config.headers) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;

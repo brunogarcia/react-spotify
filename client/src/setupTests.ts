@@ -8,5 +8,9 @@ import { mockTopArtists } from "./mocks";
 jest.mock("react-router-dom")
 
 jest.mock("./hooks", () => ({
+  useAuth: () => ({
+    logout: () => jest.fn(),
+    accessToken: "mock-token"
+  }),
   useTopArtists: () => mockTopArtists()
 }))

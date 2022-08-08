@@ -4,7 +4,7 @@ import { LOCALSTORAGE_KEYS } from "./local-storage";
  * Clear out all localStorage items we've set and reload the page
  * @returns {void}
  */
-export const logout = () => {
+export const logout = (): void => {
   // Clear all localStorage items
   for (const property in LOCALSTORAGE_KEYS) {
     window.localStorage.removeItem(LOCALSTORAGE_KEYS[property]);

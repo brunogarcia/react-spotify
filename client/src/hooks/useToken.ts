@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import auth from "../hooks/useAuth";
+import { useAuth } from "../hooks";
 
 const useToken = () => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    setToken(auth.accessToken);
+    setToken(useAuth.accessToken);
   }, []);
 
   return { token };

@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import auth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks";
 
 const StyledButton = styled.button`
   position: absolute;
@@ -17,6 +17,6 @@ const StyledButton = styled.button`
   }
 `;
 
-const Logout = () => <StyledButton onClick={auth.logout}>Log Out</StyledButton>;
+const Logout = () => <StyledButton onClick={useAuth.logout}>Log Out</StyledButton>;
 
 export default Logout;
