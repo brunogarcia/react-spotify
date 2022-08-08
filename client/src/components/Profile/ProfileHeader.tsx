@@ -1,6 +1,5 @@
 import { StyledHeader } from "../../styles";
-import useUserProfile from "../../hooks/useUserProfile";
-import useUserPlaylists from "../../hooks/useUserPlaylists";
+import { useUserProfile, useUserPlaylists } from "../../hooks";
 
 const ProfileHeader = () => {
   const { profile } = useUserProfile();

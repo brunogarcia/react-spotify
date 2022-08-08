@@ -14,6 +14,10 @@ jest.mock("./hooks", () => ({
     logout: () => jest.fn(),
     accessToken: "mock-token"
   }),
+  useScroll: () => jest.fn(),
+  useToken: () => ({
+    token: null,
+  }),
   useUserTracks: () => ({
     topTracks: mockUserTracks(),
   }),

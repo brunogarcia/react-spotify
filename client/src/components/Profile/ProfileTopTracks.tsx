@@ -1,4 +1,4 @@
-import useUserTracks from "../../hooks/useUserTracks";
+import { useUserTracks } from "../../hooks";
 import { SectionWrapper, TracksGrid } from '../../components';
 
 const ProfileTopTracks = () => {

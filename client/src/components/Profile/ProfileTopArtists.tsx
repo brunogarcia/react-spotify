@@ -1,4 +1,4 @@
-import useUserArtists from "../../hooks/useUserArtists";
+import { useUserArtists } from "../../hooks";
 import { SectionWrapper, ArtistsGrid } from '../../components';
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 

@@ -1,8 +1,7 @@
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import { GlobalStyle } from "./styles";
-import useToken from "./hooks/useToken";
-import ScrollToTop from "./hooks/useScroll";
+import { useToken, useScroll as ScrollToTop } from "./hooks";
 
 import {
   Login,
