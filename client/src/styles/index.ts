@@ -1,12 +1,14 @@
+// Global
 export { default as GlobalStyle } from "./global";
 
-// Login page
-export { default as StyledLoginButton } from "./ui/StyledLoginButton";
-export { default as StyledLoginContainer } from "./ui/StyledLoginContainer";
+// UI Auth
+export { default as StyledLoginButton } from "./ui/auth/StyledLoginButton";
+export { default as StyledLogoutButton } from "./ui/auth/StyledLogoutButton";
+export { default as StyledLoginContainer } from "./ui/auth/StyledLoginContainer";
 
-// Commons
-export { default as StyledGrid } from "./ui/StyledGrid";
-export { default as StyledHeader } from "./ui/StyledHeader";
-export { default as StyledSection } from "./ui/StyledSection";
-export { default as StyledTrackList } from "./ui/StyledTrackList";
-export { default as StyledRangeButtons } from "./ui/StyledRangeButtons";
+// UI Commons
+export { default as StyledGrid } from "./ui/commons/StyledGrid";
+export { default as StyledHeader } from "./ui/commons/StyledHeader";
+export { default as StyledSection } from "./ui/commons/StyledSection";
+export { default as StyledTrackList } from "./ui/commons/StyledTrackList";
+export { default as StyledRangeButtons } from "./ui/commons/StyledRangeButtons";

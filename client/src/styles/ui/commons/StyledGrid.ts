@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import { SectionType } from "../../types/global.model";
+import { SectionType } from "../../../types/global.model";
 
 const StyledGrid = styled.ul`
   list-style: none;
