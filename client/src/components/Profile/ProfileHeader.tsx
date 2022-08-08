@@ -19,8 +19,12 @@ const ProfileHeader = () => {
             />
           )}
           <div>
-            <div className="header__overline">Profile</div>
-            <h1 className="header__name">{profile.display_name}</h1>
+            <div className="header__overline">
+              Profile
+            </div>
+            <h1 className="header__name">
+              {profile.display_name}
+            </h1>
             <p className="header__meta">
               {playlists && (
                 <span>

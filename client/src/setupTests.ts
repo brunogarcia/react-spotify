@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import {
+  mockProfile,
   mockUserTracks,
   mockUserArtists,
   mockUserPlaylists,
@@ -17,6 +18,9 @@ jest.mock("./hooks", () => ({
   useScroll: () => jest.fn(),
   useToken: () => ({
     token: null,
+  }),
+  useUserProfile: () => ({
+    profile: mockProfile(),
   }),
   useUserTracks: () => ({
     topTracks: mockUserTracks(),
