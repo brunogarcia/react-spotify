@@ -10,14 +10,16 @@ const ArtistsGrid = ({ artists }: ArtistsGridProps) => (
     {artists && artists.length ? (
       <StyledGrid type="artist">
         {artists.map((artist) => (
-          <li className="grid__item" key={artist.id}>
+          <li className="grid__item" key={artist.id} data-testid="grid__item__artist">
             <div className="grid__item__inner">
               {artist.images[0] && (
                 <div className="grid__item__img">
                   <img src={artist.images[0].url} alt={artist.name} />
                 </div>
               )}
-              <h3 className="grid__item__name overflow-ellipsis">{artist.name}</h3>
+              <h3 className="grid__item__name overflow-ellipsis">
+                {artist.name}
+              </h3>
               <p className="grid__item__label">
                 {artist.genres[0]}
               </p>

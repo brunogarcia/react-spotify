@@ -8,7 +8,7 @@ const useToken = () => {
     setToken(auth.accessToken);
   }, []);
 
-  return { token, shouldRedirect: !token };
+  return { token };
 }
 
 export default useToken;
