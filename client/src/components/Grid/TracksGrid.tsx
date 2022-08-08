@@ -11,7 +11,7 @@ const TracksGrid = ({ tracks }: TracksGridProps) => (
     {tracks && tracks.length ? (
       <StyledTrackList>
         {tracks.map((track, i) => (
-          <li className="track__item" key={track.id}>
+          <li className="track__item" key={track.id} data-testid="grid__item__tracks">
             <div className="track__item__num">{i + 1}</div>
             <div className="track__item__title-group">
               {track.album.images.length && track.album.images[2] && (
