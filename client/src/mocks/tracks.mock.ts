@@ -3,7 +3,7 @@ import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
 import { mockAlbum } from "./albums.mock";
 import { mockArtists } from "./artists.mock";
 
-export default function mockTracks(): SpotifyTrack[] {
+export function mockTracks(): SpotifyTrack[] {
   return [
     {
       album: mockAlbum({ id: "001" }) as SpotifyAlbum,

@@ -1,7 +1,7 @@
 import { SpotifyPlaylist } from "../types/spotify.model";
-import mockTracks from "./tracks.mock";
+import { mockTracks } from "./tracks.mock";
 
-export default function mockPlaylists(): SpotifyPlaylist[] {
+export function mockPlaylists(): SpotifyPlaylist[] {
   return [
     {
       collaborative: true,
