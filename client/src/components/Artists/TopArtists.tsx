@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTopArtists } from "../../hooks";
+import { useUserArtists } from "../../hooks";
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 import { ArtistsGrid, SectionWrapper, TimeRangeButtons } from '../../components';
 
@@ -9,7 +9,7 @@ const TopArtists = () => {
     time_range: SpotifyTimeRange.SHORT_TERM,
   });
 
-  const { topArtists } = useTopArtists(payload);
+  const { topArtists } = useUserArtists(payload);
 
   return (
     <main>

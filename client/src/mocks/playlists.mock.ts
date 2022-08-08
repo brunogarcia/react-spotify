@@ -1,4 +1,4 @@
-import { SpotifyPlaylist } from "../types/spotify.model";
+import { SpotifyPlaylist, SpotifyPlaylists } from "../types/spotify.model";
 import { mockTracks } from "./tracks.mock";
 
 export function mockPlaylists(): SpotifyPlaylist[] {
@@ -42,4 +42,16 @@ export function mockPlaylists(): SpotifyPlaylist[] {
       uri: "test",
     }
   ];
+}
+
+export function mockUserPlaylists(): SpotifyPlaylists {
+  return {
+    href: "test",
+    limit: 10,
+    next: "test",
+    offset: 0,
+    previous: "test",
+    total: 10,
+    items: mockPlaylists(),
+  }
 }

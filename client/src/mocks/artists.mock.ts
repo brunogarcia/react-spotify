@@ -1,4 +1,4 @@
-import { SpotifyArtist } from '../types/spotify.model';
+import { SpotifyArtist, SpotifyUserTopArtists } from '../types/spotify.model';
 
 export function mockArtists(): SpotifyArtist[] {
   return [
@@ -47,16 +47,14 @@ export function mockArtists(): SpotifyArtist[] {
   ]
 }
 
-export function mockTopArtists() {
+export function mockUserArtists(): SpotifyUserTopArtists {
   return {
-    topArtists: {
-      href: "test",
-      limit: 10,
-      next: "test",
-      offset: 0,
-      previous: "test",
-      total: 10,
-      items: mockArtists()
-    }
+    href: "test",
+    limit: 10,
+    next: "test",
+    offset: 0,
+    previous: "test",
+    total: 10,
+    items: mockArtists()
   }
 }

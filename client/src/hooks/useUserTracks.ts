@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getTopTracks } from "../api/spotify.api";
 import { SpotifyTimeRange, SpotifyUserTopTracks } from "../types/spotify.model";
 
-const useTopTracks = () => {
+const useUserTracks = () => {
   const [topTracks, setTopTracks] = useState<SpotifyUserTopTracks | null>(null);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const useTopTracks = () => {
   return { topTracks };
 }
 
-export default useTopTracks;
+export default useUserTracks;

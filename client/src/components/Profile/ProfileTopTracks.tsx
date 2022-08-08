@@ -1,8 +1,8 @@
-import useTopTracks from "../../hooks/useTopTracks";
+import useUserTracks from "../../hooks/useUserTracks";
 import { SectionWrapper, TracksGrid } from '../../components';
 
 const ProfileTopTracks = () => {
-  const { topTracks } = useTopTracks();
+  const { topTracks } = useUserTracks();
   return (
     <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
       { topTracks && <TracksGrid tracks={topTracks.items} /> }

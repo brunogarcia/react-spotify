@@ -1,4 +1,4 @@
-export { mockTracks } from "./tracks.mock"
-export { mockPlaylists } from "./playlists.mock"
-export { mockAlbums, mockAlbum  } from "./albums.mock"
-export { mockArtists, mockTopArtists } from "./artists.mock"
+export { mockAlbum, mockAlbums  } from "./albums.mock"
+export { mockTracks, mockUserTracks } from "./tracks.mock"
+export { mockArtists, mockUserArtists } from "./artists.mock"
+export { mockPlaylists, mockUserPlaylists } from "./playlists.mock"

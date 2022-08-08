@@ -25,10 +25,10 @@ export interface SpotifyPlaylist {
 
 export interface SpotifyPlaylists {
   href: string;
-  items: SpotifyPlaylist[];
   limit: number;
   next: string;
   offset: number;
   previous: string;
   total: number;
+  items: SpotifyPlaylist[];
 }

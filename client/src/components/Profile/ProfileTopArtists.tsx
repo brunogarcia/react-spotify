@@ -1,4 +1,4 @@
-import useTopArtists from "../../hooks/useTopArtists";
+import useUserArtists from "../../hooks/useUserArtists";
 import { SectionWrapper, ArtistsGrid } from '../../components';
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 
@@ -8,7 +8,7 @@ const payload: SpotifyPayload = {
 };
 
 const ProfileTopArtists = () => {
-  const { topArtists } = useTopArtists(payload);
+  const { topArtists } = useUserArtists(payload);
 
   return (
     <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">

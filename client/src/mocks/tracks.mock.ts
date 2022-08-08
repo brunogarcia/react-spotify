@@ -1,4 +1,4 @@
-import { SpotifyTrack } from "../types/spotify.model";
+import { SpotifyTrack, SpotifyUserTopTracks } from "../types/spotify.model";
 import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
 import { mockAlbum } from "./albums.mock";
 import { mockArtists } from "./artists.mock";
@@ -26,4 +26,16 @@ export function mockTracks(): SpotifyTrack[] {
       uri: "test"
     }
   ]
+}
+
+export function mockUserTracks(): SpotifyUserTopTracks {
+  return {
+    href: "test",
+    limit: 10,
+    next: "test",
+    offset: 0,
+    previous: "test",
+    total: 10,
+    items: mockTracks()
+  }
 }

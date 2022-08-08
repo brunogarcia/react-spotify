@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getTopArtists } from "../api/spotify.api";
 import { SpotifyUserTopArtists, SpotifyPayload } from "../types/spotify.model";
 
-const useTopArtists = (payload: SpotifyPayload) => {
+const useUserArtists = (payload: SpotifyPayload) => {
   const [topArtists, setTopArtists] = useState<SpotifyUserTopArtists | null>(null);
 
   useEffect(() => {
@@ -24,5 +24,5 @@ const useTopArtists = (payload: SpotifyPayload) => {
   return { topArtists };
 }
 
-export default useTopArtists;
+export default useUserArtists;
 
