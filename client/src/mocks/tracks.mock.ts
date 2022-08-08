@@ -1,13 +1,13 @@
 import { SpotifyTrack } from "../types/spotify.model";
 import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
-import { getMockAlbum } from "./albums";
-import { getMockArtists } from "./artists";
+import { mockAlbum } from "./albums.mock";
+import { mockArtists } from "./artists.mock";
 
-export default function getMockTracks(): SpotifyTrack[] {
+export default function mockTracks(): SpotifyTrack[] {
   return [
     {
-      album: getMockAlbum({ id: "001" }) as SpotifyAlbum,
-      artists: getMockArtists(),
+      album: mockAlbum({ id: "001" }) as SpotifyAlbum,
+      artists: mockArtists(),
       available_markets: ["test"],
       disc_number: 1,
       duration_ms: 1000,

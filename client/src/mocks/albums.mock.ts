@@ -1,11 +1,11 @@
 import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
-import { getMockArtists } from "./artists";
+import { mockArtists } from "./artists.mock";
 
-export function getMockAlbums(): SpotifyAlbum[] {
+export function mockAlbums(): SpotifyAlbum[] {
   return [
     {
       album_type: "test",
-      artists: getMockArtists(),
+      artists: mockArtists(),
       available_markets: ["test"],
       external_urls: {
         spotify: "test"
@@ -27,6 +27,6 @@ export function getMockAlbums(): SpotifyAlbum[] {
   ]
 }
 
-export function getMockAlbum({ id }: Record<string, string>): SpotifyAlbum | undefined {
-  return getMockAlbums().find((item: SpotifyAlbum) => item.id === id);
+export function mockAlbum({ id }: Record<string, string>): SpotifyAlbum | undefined {
+  return mockAlbums().find((item: SpotifyAlbum) => item.id === id);
 }

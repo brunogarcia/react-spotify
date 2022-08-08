@@ -1,7 +1,7 @@
 import { SpotifyPlaylist } from "../types/spotify.model";
-import getMockTracks from "./tracks";
+import mockTracks from "./tracks.mock";
 
-export default function getMockPlaylists(): SpotifyPlaylist[] {
+export default function mockPlaylists(): SpotifyPlaylist[] {
   return [
     {
       collaborative: true,
@@ -37,7 +37,7 @@ export default function getMockPlaylists(): SpotifyPlaylist[] {
       },
       public: true,
       snapshot_id: "test",
-      tracks: getMockTracks(),
+      tracks: mockTracks(),
       type: "test",
       uri: "test",
     }

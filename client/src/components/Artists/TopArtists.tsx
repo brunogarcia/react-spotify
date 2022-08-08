@@ -16,7 +16,10 @@ const TopArtists = () => {
       <SectionWrapper title="Top Artists" breadcrumb={true}>
         <TimeRangeButtons
           activeRange={payload.time_range}
-          setActiveRange={(time_range: SpotifyTimeRange) => setPayload({ ...payload, time_range })}
+          setActiveRange={(time_range: SpotifyTimeRange) => setPayload({
+            ...payload,
+            time_range
+          })}
         />
 
         {topArtists && topArtists.items && (

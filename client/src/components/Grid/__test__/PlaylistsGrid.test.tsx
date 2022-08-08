@@ -2,10 +2,10 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import PlaylistsGrid from "../PlaylistsGrid";
-import { getMockPlaylists } from "../../../mocks";
+import { mockPlaylists } from "../../../mocks";
 import { SpotifyPlaylist } from '../../../types/spotify.model';
 
-const playlists: SpotifyPlaylist[] = getMockPlaylists();
+const playlists: SpotifyPlaylist[] = mockPlaylists();
 
 test("renders the empty state", () =>  {
   render(<PlaylistsGrid playlists={[]} />);

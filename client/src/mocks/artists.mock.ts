@@ -1,6 +1,6 @@
 import { SpotifyArtist } from '../types/spotify.model';
 
-export function getMockArtists(): SpotifyArtist[] {
+export function mockArtists(): SpotifyArtist[] {
   return [
     {
       external_urls: {
@@ -47,7 +47,7 @@ export function getMockArtists(): SpotifyArtist[] {
   ]
 }
 
-export function getMockTopArtists() {
+export function mockTopArtists() {
   return {
     topArtists: {
       href: "test",
@@ -56,7 +56,7 @@ export function getMockTopArtists() {
       offset: 0,
       previous: "test",
       total: 10,
-      items: getMockArtists()
+      items: mockArtists()
     }
   }
 }
