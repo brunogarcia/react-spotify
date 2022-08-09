@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getTopArtists } from "../api/spotify.api";
-import { SpotifyUserTopArtists, SpotifyPayload } from "../types/spotify.model";
+import { SpotifyPayload, SpotifyUserTopArtists } from "../types/spotify.model";
 
 const useUserArtists = (payload: SpotifyPayload) => {
   const [topArtists, setTopArtists] = useState<SpotifyUserTopArtists | null>(null);

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { getTopTracks } from "../api/spotify.api";
-import { SpotifyTimeRange, SpotifyUserTopTracks } from "../types/spotify.model";
+import { SpotifyPayload, SpotifyUserTopTracks } from "../types/spotify.model";
 
-const useUserTracks = () => {
+const useUserTracks = (payload: SpotifyPayload) => {
   const [topTracks, setTopTracks] = useState<SpotifyUserTopTracks | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userTopTracks = await getTopTracks({
-          limit: 10,
-          time_range: SpotifyTimeRange.SHORT_TERM,
+          limit: payload.limit,
+          time_range: payload.time_range,
         });
         setTopTracks(userTopTracks);
       } catch (error) {
@@ -19,7 +19,7 @@ const useUserTracks = () => {
     };
 
     fetchData();
-  }, []);
+  }, [payload.time_range, payload.limit]);
 
   return { topTracks };
 }

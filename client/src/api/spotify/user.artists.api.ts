@@ -1,8 +1,8 @@
 import axios from "../config/axios.config";
 import {
-  SpotifyUserTopArtists,
   SpotifyPayload,
   SpotifyTimeRange,
+  SpotifyUserTopArtists,
 } from "../../types/spotify.model";
 
 /**
