@@ -1,6 +1,11 @@
 import { useUserArtists } from "../../hooks";
-import { SectionWrapper, ArtistsGrid } from '../../components';
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
+import {
+  SectionWrapper,
+  LoaderList,
+  ErrorMessage,
+  ArtistsGrid,
+} from '../../components';
 
 const payload: SpotifyPayload = {
   limit: 10,
@@ -8,11 +13,15 @@ const payload: SpotifyPayload = {
 };
 
 const ProfileTopArtists = () => {
-  const { topArtists } = useUserArtists(payload);
+  const { error, loading, topArtists } = useUserArtists(payload);
 
   return (
     <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
-      { topArtists && topArtists.items && <ArtistsGrid artists={topArtists.items} />}
+      {
+        loading ? <LoaderList /> :
+        error ? <ErrorMessage message={"No artists available"} /> :
+        topArtists && <ArtistsGrid artists={topArtists.items} />
+      }
     </SectionWrapper>
   );
 };

@@ -1,6 +1,11 @@
 import { useUserTracks } from "../../hooks";
-import { SectionWrapper, TracksGrid } from '../../components';
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
+import {
+  SectionWrapper,
+  LoaderList,
+  ErrorMessage,
+  TracksGrid,
+} from '../../components';
 
 const payload: SpotifyPayload = {
   limit: 10,
@@ -8,10 +13,14 @@ const payload: SpotifyPayload = {
 };
 
 const ProfileTopTracks = () => {
-  const { topTracks } = useUserTracks(payload);
+  const { error, loading, topTracks } = useUserTracks(payload);
   return (
     <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
-      { topTracks && <TracksGrid tracks={topTracks.items} /> }
+      {
+      loading ? <LoaderList /> :
+      error ? <ErrorMessage message={"No tracks available"} /> :
+      topTracks && <TracksGrid tracks={topTracks.items} />
+      }
     </SectionWrapper>
   );
 };

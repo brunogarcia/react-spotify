@@ -1,12 +1,21 @@
 import { useUserPlaylists } from "../../hooks";
-import { SectionWrapper, PlaylistsGrid } from '../../components';
+import {
+  SectionWrapper,
+  LoaderList,
+  ErrorMessage,
+  PlaylistsGrid,
+} from '../../components';
 
 const ProfilePlaylists = () => {
-  const { playlists } = useUserPlaylists();
+  const { error, loading, playlists } = useUserPlaylists();
 
   return (
     <SectionWrapper title="Playlists" seeAllLink="/playlists">
-      { playlists && <PlaylistsGrid playlists={playlists.items} /> }
+      {
+        loading ? <LoaderList /> :
+        error ? <ErrorMessage message={"No playlists available"} /> :
+        playlists && <PlaylistsGrid playlists={playlists.items} />
+      }
     </SectionWrapper>
   );
 };
