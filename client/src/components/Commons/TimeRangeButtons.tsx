@@ -2,7 +2,7 @@ import { StyledRangeButtons } from '../../styles';
 import { StyleButton } from "../../types/global.model";
 import { SpotifyTimeRange } from "../../types/spotify.model";
 
-interface TimeRangeButtonsProps {
+type TimeRangeButtonsProps = {
   activeRange: SpotifyTimeRange;
   setActiveRange: (time_range: SpotifyTimeRange) => void;
 }

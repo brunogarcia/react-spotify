@@ -1,8 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-interface ReactPropTypes {}
-
-const LoaderProfile = (props: ReactPropTypes) => (
+const LoaderProfile = () => (
   <ContentLoader
     speed={2}
     width={300}
@@ -10,7 +8,6 @@ const LoaderProfile = (props: ReactPropTypes) => (
     viewBox="0 0 300 200"
     backgroundColor="#333333"
     foregroundColor="#eeeeee"
-    {...props}
   >
     <rect x="10" y="60" rx="3" ry="3" width="140" height="50" />
     <rect x="160" y="60" rx="3" ry="3" width="140" height="50" />

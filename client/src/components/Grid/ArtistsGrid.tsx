@@ -1,7 +1,7 @@
 import { StyledGrid } from '../../styles';
 import { SpotifyArtist } from '../../types/spotify.model';
 
-interface ArtistsGridProps {
+type ArtistsGridProps = {
   artists: SpotifyArtist[];
 }
 

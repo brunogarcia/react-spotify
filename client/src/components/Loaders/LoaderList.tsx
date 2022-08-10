@@ -1,8 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-interface ReactPropTypes {}
-
-const ArtistsLoader = (props: ReactPropTypes) => (
+const ArtistsLoader = () => (
   <ContentLoader
     speed={2}
     width={"1180"}
@@ -10,7 +8,6 @@ const ArtistsLoader = (props: ReactPropTypes) => (
     viewBox="0 0 1180 200"
     backgroundColor="#333333"
     foregroundColor="#eeeeee"
-    {...props}
   >
     <circle cx="80" cy="80" r="80" />
     <rect x="40" y="170" rx="5" ry="5" width="80" height="10" />

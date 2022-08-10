@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-interface LoaderImageProps {
+type LoaderImageProps = {
   width?: number;
   heigth?: number;
 }

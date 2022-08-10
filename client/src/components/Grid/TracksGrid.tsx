@@ -2,7 +2,7 @@ import { formatDuration } from '../../utils';
 import { StyledTrackList } from '../../styles';
 import { SpotifyTrack } from "../../types/spotify.model";
 
-interface TracksGridProps {
+type TracksGridProps = {
   tracks: SpotifyTrack[];
 }
 
