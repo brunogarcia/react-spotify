@@ -1,7 +1,6 @@
 import { usePlaylist } from '../../hooks';
 import {
   PlaylistGrid,
-  LoaderList,
   ErrorMessage,
 } from '../../components';
 
@@ -16,9 +15,10 @@ const Playlist = () => {
   return (
     <>
       {
-        loading ? <LoaderList /> :
         error ? <ErrorMessage message={"No playlist available"} /> :
-        playlist && <PlaylistGrid playlist={playlist} tracks={tracks} />
+        playlist && (
+          <PlaylistGrid playlist={playlist} tracks={tracks} loading={loading} />
+        )
       }
     </>
   )
