@@ -1,14 +1,32 @@
+import { LoaderImage } from '../../components';
+import { SpotifyImage } from "../../types/spotify.model";
+import { hasImage, getImage } from "../../utils/images.util";
+
 type ImageProps = {
-  src: string;
   alt: string;
+  width?: number;
+  height?: number;
   isLoading?: boolean;
   className?: string;
+  images: SpotifyImage[];
 }
 
-const Image = ({ src, alt, isLoading, className, ...props }: ImageProps) => {
-  return (
-      <img src={src} alt={alt} className={className} {...props} />
-  );
+const Image = (props: ImageProps) => {
+  const { images, alt, width, height, className, isLoading } = props;
+
+  if (isLoading) {
+    return <LoaderImage width={width} height={height} />
+  }
+
+  return hasImage(images) ?
+    <img
+      alt={alt}
+      loading="lazy"
+      width={width}
+      height={height}
+      className={className}
+      src={getImage(images)}
+    /> : null;
 }
 
 export default Image;

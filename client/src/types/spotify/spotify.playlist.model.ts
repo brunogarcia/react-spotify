@@ -6,6 +6,29 @@ import {
   SpotifyOwner
 } from './spotify.common.model';
 
+export interface SpotifyPlaylistTrack {
+  added_at: string
+  added_by: {
+    external_urls: SpotifyExternalUrls
+  };
+  is_local: boolean
+  primary_color: string | null
+  track: SpotifyTrack
+  video_thumbnail: {
+    url: string | null
+  }
+}
+
+export interface SpotifyPlaylistTracks {
+  href: string;
+  limit: number;
+  next: string;
+  offset: number;
+  previous: string;
+  total: number;
+  items: SpotifyPlaylistTrack[];
+}
+
 export interface SpotifyPlaylist {
   collaborative: boolean;
   description: string;
@@ -18,7 +41,7 @@ export interface SpotifyPlaylist {
   owner: SpotifyOwner;
   public: boolean;
   snapshot_id: string;
-  tracks: SpotifyTrack[];
+  tracks: SpotifyPlaylistTracks;
   type: string;
   uri: string;
 }

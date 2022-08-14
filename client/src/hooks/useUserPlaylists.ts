@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import {  SpotifyPlaylists } from "../types/spotify.model";
 import { getUserPlaylists } from "../api/spotify.api";
+import { SpotifyPlaylists } from "../types/spotify.model";
 
 const useUserPlaylists = () => {
   const [error, setError] = useState(false);

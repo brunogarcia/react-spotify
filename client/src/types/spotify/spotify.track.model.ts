@@ -1,5 +1,5 @@
-import { SpotifyArtist } from './spotify.artist.model';
 import { SpotifyAlbum } from './spotify.album.model';
+import { SpotifyArtist } from './spotify.artist.model';
 import { SpotifyExternalUrls } from './spotify.common.model';
 
 export interface SpotifyTrack {
@@ -19,4 +19,14 @@ export interface SpotifyTrack {
   track_number: number;
   type: string;
   uri: string;
+}
+
+export interface SpotifyTracks {
+  href: string,
+  items: SpotifyTrack[],
+  limit: number,
+  next: string,
+  offset: number,
+  previous: string,
+  total: number
 }

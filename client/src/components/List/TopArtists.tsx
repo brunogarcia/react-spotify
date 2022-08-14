@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useUserArtists } from "../../hooks";
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
-import { ArtistsGrid, SectionWrapper, TimeRangeButtons } from '../../components';
+import {
+  SectionWrapper,
+  LoaderList,
+  ErrorMessage,
+  ArtistsGrid,
+  TimeRangeButtons,
+} from '..';
 
 const TopArtists = () => {
   const [payload, setPayload] = useState<SpotifyPayload>({
@@ -9,7 +15,7 @@ const TopArtists = () => {
     time_range: SpotifyTimeRange.SHORT_TERM,
   });
 
-  const { topArtists } = useUserArtists(payload);
+  const { error, loading, topArtists } = useUserArtists(payload);
 
   return (
     <main>
@@ -21,10 +27,11 @@ const TopArtists = () => {
             time_range
           })}
         />
-
-        {topArtists && topArtists.items && (
-          <ArtistsGrid artists={topArtists.items} />
-        )}
+        {
+          loading ? <LoaderList /> :
+          error ? <ErrorMessage message={"No artists available"} /> :
+          topArtists && <ArtistsGrid artists={topArtists.items} />
+        }
       </SectionWrapper>
     </main>
   );

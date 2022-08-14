@@ -53,8 +53,11 @@
     "babel-plugin-styled-components": "^2.0.7"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "src/**/*.{ts,tsx,json,css,md}": [
       "prettier --write"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "npm run test"
     ]
   },
   "husky": {

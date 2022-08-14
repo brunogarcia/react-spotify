@@ -1,5 +1,39 @@
-import { SpotifyPlaylist, SpotifyPlaylists } from "../types/spotify.model";
 import { mockTracks } from "./tracks.mock";
+import {
+  SpotifyPlaylist,
+  SpotifyPlaylists,
+  SpotifyPlaylistTrack,
+  SpotifyPlaylistTracks
+} from "../types/spotify.model";
+
+function mockPlaylistTrack(): SpotifyPlaylistTrack[] {
+  return[ {
+    added_at: "2020-06-01T00:00:00.000Z",
+    added_by: {
+      external_urls: {
+        spotify: "https://open.spotify.com/user/123456789"
+      }
+    },
+    is_local: false,
+    primary_color: null,
+    track: mockTracks()[0],
+    video_thumbnail: {
+      url: null
+    }
+  }];
+}
+
+function mockPlaylistTracks(): SpotifyPlaylistTracks {
+  return {
+    href: "https://api.spotify.com/v1/users/1234/playlists/5678/tracks",
+    limit: 100,
+    next: "",
+    offset: 0,
+    previous: "",
+    total: 100,
+    items: mockPlaylistTrack()
+  };
+}
 
 export function mockPlaylists(): SpotifyPlaylist[] {
   return [
@@ -37,7 +71,7 @@ export function mockPlaylists(): SpotifyPlaylist[] {
       },
       public: true,
       snapshot_id: "test",
-      tracks: mockTracks(),
+      tracks: mockPlaylistTracks(),
       type: "test",
       uri: "test",
     }

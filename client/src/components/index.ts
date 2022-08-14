@@ -3,13 +3,17 @@ export { default as Logout } from './Logout/Logout';
 // Grid
 export { default as TracksGrid } from './Grid/TracksGrid';
 export { default as ArtistsGrid } from './Grid/ArtistsGrid';
+export { default as PlaylistGrid } from './Grid/PlaylistGrid';
 export { default as PlaylistsGrid } from './Grid/PlaylistsGrid';
 
 // Wrapper
 export { default as SectionWrapper } from './Wrapper/SectionWrapper';
 
-// Artist
-export { default as TopArtists } from './Artists/TopArtists';
+// List
+export { default as TopTracks } from './List/TopTracks';
+export { default as TopArtists } from './List/TopArtists';
+export { default as Playlist } from './List/Playlist';
+export { default as Playlists } from './List/Playlists';
 
 // Loaders
 export { default as LoaderImage } from './Loaders/LoaderImage';

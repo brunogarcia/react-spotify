@@ -1,3 +1,4 @@
+import { Image } from '../../components';
 import { StyledGrid } from '../../styles';
 import { SpotifyArtist } from '../../types/spotify.model';
 
@@ -11,11 +12,11 @@ const ArtistsGrid = ({ artists }: ArtistsGridProps) => (
       {artists.map((artist) => (
         <li className="grid__item" key={artist.id} data-testid="grid__item__artist">
           <div className="grid__item__inner">
-            {artist.images[0] && (
+            {
               <div className="grid__item__img">
-                <img src={artist.images[0].url} alt={artist.name} />
+                <Image images={artist.images} alt={artist.name} />
               </div>
-            )}
+            }
             <h3 className="grid__item__name overflow-ellipsis">
               {artist.name}
             </h3>

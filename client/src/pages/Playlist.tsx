@@ -1,7 +1,9 @@
-import React from "react";
+import { Playlist } from "../components";
 
-const PlayList: React.FC = () => {
-  return <h1>PlayList</h1>;
+const PlaylistPage = () => {
+  return (
+    <Playlist />
+  );
 };
 
-export default PlayList;
+export default PlaylistPage;

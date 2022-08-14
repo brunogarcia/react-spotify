@@ -12,7 +12,7 @@ import {
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @returns {Promise<SpotifyUserTopTracks>} User's Top Tracks
  */
- const getTopTracks = async (payload: SpotifyPayload): Promise<SpotifyUserTopTracks> => {
+ export const getTopTracks = async (payload: SpotifyPayload): Promise<SpotifyUserTopTracks> => {
   const {
     limit = 10,
     time_range = SpotifyTimeRange.SHORT_TERM,
@@ -30,5 +30,3 @@ import {
     throw error;
   }
 };
-
-export default getTopTracks
