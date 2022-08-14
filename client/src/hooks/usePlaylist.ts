@@ -69,30 +69,32 @@ const usePlaylistById = () => {
 
   // 3) Create an array of memoized tracks that is structured
   // in a way that works with our <TrackList> component
-  const playlistTracksFiltered: SpotifyTrack[] | null = useMemo(() => {
+  const tracksFiltered: SpotifyTrack[] | null = useMemo(() => {
     if (!tracks) {
       return null;
     }
 
-    const list = tracks.map(({ track }) => track);
-    const uniqueIds: string[] = [];
-    return list.filter(item => {
-      const isDuplicate = uniqueIds.includes(item.id);
+    const trackIds: string[] = [];
+    const trackList = tracks.map(({ track }) => track);
+    const trackFilter = (item: SpotifyTrack) => {
+      const isDuplicate = trackIds.includes(item.id);
 
       if (!isDuplicate) {
-        uniqueIds.push(item.id);
+        trackIds.push(item.id);
         return true;
       }
 
       return false;
-    });
+    }
+
+    return trackList.filter(trackFilter);
   }, [tracks]);
 
   return {
     error,
     loading,
     playlist,
-    tracks: playlistTracksFiltered,
+    tracks: tracksFiltered,
   };
 }
 

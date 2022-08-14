@@ -1,6 +1,6 @@
 import { LoaderImage } from '../../components';
+import { hasImage, getImage } from "../../utils";
 import { SpotifyImage } from "../../types/spotify.model";
-import { hasImage, getImage } from "../../utils/images.util";
 
 type ImageProps = {
   alt: string;
