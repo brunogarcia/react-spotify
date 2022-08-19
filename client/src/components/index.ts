@@ -5,6 +5,7 @@ export { default as TracksGrid } from './Grid/TracksGrid';
 export { default as ArtistsGrid } from './Grid/ArtistsGrid';
 export { default as PlaylistGrid } from './Grid/PlaylistGrid';
 export { default as PlaylistsGrid } from './Grid/PlaylistsGrid';
+export { default as PlaylistTracksGrid } from './Grid/PlaylistTracksGrid';
 
 // Wrapper
 export { default as SectionWrapper } from './Wrapper/SectionWrapper';
