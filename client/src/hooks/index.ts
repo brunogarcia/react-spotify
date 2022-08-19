@@ -1,4 +1,8 @@
 export { default as useAuth } from './useAuth'
 export { default as useToken } from './useToken'
 export { default as useScroll } from './useScroll'
+export { default as useTracks } from './useTracks'
+export { default as useProfile } from './useProfile'
+export { default as useArtists } from './useArtists'
 export { default as usePlaylist } from './usePlaylist'
+export { default as usePlaylists } from './usePlaylists'

@@ -1,6 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
-import { QueryType } from "../../types/query.model";
-import { fetchTopTracks } from "../../api/spotify.api";
+import { useTracks } from "../../hooks";
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 import {
   SectionWrapper,
@@ -16,17 +14,17 @@ const payload: SpotifyPayload = {
 
 const ProfileTopTracks = () => {
   const {
-    isLoading,
     error,
-    data,
-  } = useQuery([QueryType.TOP_TRACKS], () => fetchTopTracks(payload));
+    tracks,
+    isLoading,
+  } = useTracks(payload);
 
   return (
     <SectionWrapper title="Top tracks this month" seeAllLink="/top-tracks">
       {
       isLoading ? <LoaderList /> :
       error ? <ErrorMessage message={"No tracks available"} /> :
-      data && <TracksGrid tracks={data.items} />
+      tracks && <TracksGrid tracks={tracks.items} />
       }
     </SectionWrapper>
   );

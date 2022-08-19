@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query"
-import { QueryType } from "../../types/query.model";
-import { fetchTopArtists } from "../../api/spotify.api";
+import { useArtists } from "../../hooks";
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 import {
   SectionWrapper,
@@ -9,7 +7,7 @@ import {
   ErrorMessage,
   ArtistsGrid,
   TimeRangeButtons,
-} from '..';
+} from '../../components';
 
 const TopArtists = () => {
   const [payload, setPayload] = useState<SpotifyPayload>({
@@ -17,11 +15,7 @@ const TopArtists = () => {
     time_range: SpotifyTimeRange.SHORT_TERM,
   });
 
-  const {
-    isLoading,
-    error,
-    data,
-  } = useQuery([QueryType.TOP_ARTISTS], () => fetchTopArtists(payload));
+  const { isLoading, error, artists } = useArtists(payload);
 
   return (
     <main>
@@ -39,7 +33,7 @@ const TopArtists = () => {
         {
           isLoading ? <LoaderList /> :
           error ? <ErrorMessage message={"No artists available"} /> :
-          data && <ArtistsGrid artists={data.items} />
+          artists && <ArtistsGrid artists={artists.items} />
         }
       </SectionWrapper>
     </main>
