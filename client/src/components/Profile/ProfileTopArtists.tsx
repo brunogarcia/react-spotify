@@ -1,4 +1,6 @@
-import { useUserArtists } from "../../hooks";
+import { useQuery } from "@tanstack/react-query"
+import { QueryType } from "../../types/query.model";
+import { fetchTopArtists } from "../../api/spotify.api";
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 import {
   SectionWrapper,
@@ -13,14 +15,18 @@ const payload: SpotifyPayload = {
 };
 
 const ProfileTopArtists = () => {
-  const { error, loading, topArtists } = useUserArtists(payload);
+  const {
+    isLoading,
+    error,
+    data,
+  } = useQuery([QueryType.TOP_ARTISTS], () => fetchTopArtists(payload));
 
   return (
     <SectionWrapper title="Top artists this month" seeAllLink="/top-artists">
       {
-        loading ? <LoaderList /> :
+        isLoading ? <LoaderList /> :
         error ? <ErrorMessage message={"No artists available"} /> :
-        topArtists && <ArtistsGrid artists={topArtists.items} />
+        data && <ArtistsGrid artists={data.items} />
       }
     </SectionWrapper>
   );

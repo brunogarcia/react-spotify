@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { useUserTracks } from "../../hooks";
+import { useQuery } from "@tanstack/react-query"
+import { QueryType } from "../../types/query.model";
+import { fetchTopTracks } from "../../api/spotify.api";
 import { SpotifyPayload, SpotifyTimeRange } from "../../types/spotify.model";
 import {
   SectionWrapper,
@@ -15,23 +17,29 @@ const TopTracks = () => {
     time_range: SpotifyTimeRange.SHORT_TERM,
   });
 
-  const { error, loading, topTracks } = useUserTracks(payload);
+  const {
+    isLoading,
+    error,
+    data,
+  } = useQuery([QueryType.TOP_TRACKS], () => fetchTopTracks(payload));
 
   return (
     <main>
       <SectionWrapper title="Top Tracks" breadcrumb={true}>
-      <TimeRangeButtons
-          activeRange={payload.time_range}
-          setActiveRange={(time_range: SpotifyTimeRange) => setPayload({
+        {
+          payload?.time_range ?
+          <TimeRangeButtons
+            activeRange={payload.time_range}
+            setActiveRange={(time_range: SpotifyTimeRange) => setPayload({
             ...payload,
             time_range
           })}
-        />
-
+          />  : null
+        }
         {
-          loading ? <LoaderList /> :
+          isLoading ? <LoaderList /> :
           error ? <ErrorMessage message={"No tracks available"} /> :
-          topTracks && <TracksGrid tracks={topTracks.items} />
+          data && <TracksGrid tracks={data.items} />
         }
       </SectionWrapper>
     </main>

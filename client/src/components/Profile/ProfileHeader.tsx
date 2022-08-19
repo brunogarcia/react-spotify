@@ -1,30 +1,38 @@
+import { useQuery } from "@tanstack/react-query"
 import { StyledHeader } from "../../styles";
+import { QueryType } from "../../types/query.model";
 import { LoaderProfile, Image } from '../../components';
-import { useUserProfile, useUserPlaylists } from "../../hooks";
+import { fetchUserProfile, fetchPlaylists } from "../../api/spotify.api";
 
 const ProfileHeader = () => {
   const {
-    playlists,
-  } = useUserPlaylists();
+    data: profile,
+    error: errorProfile,
+    isLoading: isLoadingProfile,
+  } = useQuery([QueryType.USER_PROFILE], fetchUserProfile);
+
   const {
-    profile,
-    loading: profileLoading,
-  } = useUserProfile();
+    data: playlists,
+    error: errorPlaylists,
+    isLoading: isLoadingPlaylists,
+  } = useQuery([QueryType.PLAYLISTS], () => fetchPlaylists({ limit: 10 }));
 
   return (
     <StyledHeader type="user">
       <div className="header__inner">
         {
+          errorProfile ? "" :
           profile &&
           <Image
             alt="Avatar"
             className="header__img"
             images={profile.images}
-            isLoading={profileLoading}
+            isLoading={isLoadingProfile}
           />
         }
         {
-          profileLoading ? <LoaderProfile /> :
+          isLoadingProfile ? <LoaderProfile /> :
+          errorProfile ? "No profile available" :
           profile && (
             <div>
               <div className="header__overline">
@@ -34,11 +42,14 @@ const ProfileHeader = () => {
                 {profile.display_name}
               </h1>
               <p className="header__meta">
-                {playlists && (
-                  <span>
-                    {playlists.total} Playlist {playlists.total !== 1 ? "s" : ""}
-                  </span>
-                )}
+                {
+                  isLoadingPlaylists || errorPlaylists ? "" :
+                  playlists && (
+                    <span>
+                      {playlists.total} Playlist {playlists.total !== 1 ? "s" : ""}
+                    </span>
+                  )
+                }
                 <span>
                   {profile.followers.total} Follower {profile.followers.total !== 1 ? "s" : ""}
                 </span>

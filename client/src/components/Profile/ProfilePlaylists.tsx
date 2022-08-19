@@ -1,4 +1,6 @@
-import { useUserPlaylists } from "../../hooks";
+import { useQuery } from "@tanstack/react-query"
+import { QueryType } from "../../types/query.model";
+import { fetchPlaylists } from "../../api/spotify.api";
 import {
   SectionWrapper,
   LoaderList,
@@ -7,14 +9,20 @@ import {
 } from '../../components';
 
 const ProfilePlaylists = () => {
-  const { error, loading, playlists } = useUserPlaylists();
+  const {
+    isLoading,
+    error,
+    data,
+  } = useQuery([QueryType.PLAYLISTS], () => fetchPlaylists({
+    limit: 10
+  }));
 
   return (
     <SectionWrapper title="Playlists" seeAllLink="/playlists">
       {
-        loading ? <LoaderList /> :
+        isLoading ? <LoaderList /> :
         error ? <ErrorMessage message={"No playlists available"} /> :
-        playlists && <PlaylistsGrid playlists={playlists.items} />
+        data && data.items && <PlaylistsGrid playlists={data.items} />
       }
     </SectionWrapper>
   );

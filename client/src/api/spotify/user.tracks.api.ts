@@ -12,21 +12,14 @@ import {
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks
  * @returns {Promise<SpotifyUserTopTracks>} User's Top Tracks
  */
- export const getTopTracks = async (payload: SpotifyPayload): Promise<SpotifyUserTopTracks> => {
-  const {
-    limit = 10,
-    time_range = SpotifyTimeRange.SHORT_TERM,
-  } = payload;
-
+ export const fetchTopTracks = async ({
+  limit = 10,
+  time_range = SpotifyTimeRange.SHORT_TERM,
+}: SpotifyPayload): Promise<SpotifyUserTopTracks> => {
   const params = {
     limit,
     time_range,
   };
 
-  try {
-    const { data } = await axios.get<SpotifyUserTopTracks>("/me/top/tracks", { params });
-    return data;
-  } catch (error) {
-    throw error;
-  }
+  return axios.get("/me/top/tracks", { params }).then(response => response.data);
 };
