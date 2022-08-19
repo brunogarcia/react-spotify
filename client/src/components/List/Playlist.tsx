@@ -1,27 +1,25 @@
 import { usePlaylist } from '../../hooks';
 import {
-  PlaylistGrid,
   ErrorMessage,
+  PlaylistGrid,
+  PlaylistTracksGrid,
 } from '../../components';
 
 const Playlist = () => {
   const {
     error,
-    loading,
+    isLoading,
     playlist,
     tracks,
   } = usePlaylist();
 
   return (
-    <>
-      {
-        error ? <ErrorMessage message={"No playlist available"} /> :
-        playlist && (
-          <PlaylistGrid playlist={playlist} tracks={tracks} loading={loading} />
-        )
-      }
-    </>
-  )
+      error ? <ErrorMessage message={"No playlist available"} /> :
+      <>
+        <PlaylistGrid playlist={playlist} loading={isLoading} />
+        <PlaylistTracksGrid tracks={tracks} loading={isLoading} />
+      </>
+  );
 }
 
 export default Playlist;

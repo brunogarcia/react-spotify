@@ -2,17 +2,24 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useMemo } from "react";
 import { getPlaylistById, getPlaylistTracks } from "../api/spotify.api";
 import {
-  SpotifyPlaylist,
-  SpotifyPlaylistTracks,
-  SpotifyPlaylistTrack,
   SpotifyTrack,
+  SpotifyPlaylist,
+  SpotifyPlaylistTrack,
+  SpotifyPlaylistTracks,
 } from "../types/spotify.model";
 
-const usePlaylistById = () => {
+type PlaylistProps = {
+  error: boolean;
+  isLoading: boolean;
+  playlist: SpotifyPlaylist | null;
+  tracks: SpotifyTrack[] | null;
+};
+
+const usePlaylist = (): PlaylistProps => {
   const { id } = useParams();
 
   const [error, setErrorPlaylist] = useState(false);
-  const [loading, setLoadingPlaylist] = useState(true);
+  const [isLoading, setLoadingPlaylist] = useState(true);
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
 
   const [tracksData, setTracksData] = useState<SpotifyPlaylistTracks | null>(null);
@@ -92,10 +99,10 @@ const usePlaylistById = () => {
 
   return {
     error,
-    loading,
+    isLoading,
     playlist,
     tracks: tracksFiltered,
   };
 }
 
-export default usePlaylistById;
+export default usePlaylist;
