@@ -6,11 +6,12 @@ import express, { Express, Request, Response } from 'express'
 import { state, stateKey, scope, responseType } from './utils/queryParams'
 
 const app: Express = express()
-const port = process.env.PORT || 8888
 
+const PORT = process.env.PORT || 8888
 const CLIENT_ID = process.env.CLIENT_ID
-const REDIRECT_URI = process.env.REDIRECT_URI
 const CLIENT_SECRET = process.env.CLIENT_SECRET
+const SERVER_REDIRECT_URI = process.env.SERVER_REDIRECT_URI
+const FRONTEND_REDIRECT_URI = process.env.FRONTEND_REDIRECT_URI
 
 /**
  * Redirects the user to the login path.
@@ -27,7 +28,7 @@ app.get('/login', (req: Request, res: Response) => {
     state,
     scope,
     client_id: CLIENT_ID,
-    redirect_uri: REDIRECT_URI,
+    redirect_uri: SERVER_REDIRECT_URI,
     response_type: responseType
   })
 
@@ -41,7 +42,7 @@ app.get('/login', (req: Request, res: Response) => {
 app.get('/callback', async (req: Request, res: Response) => {
   const data = querystring.stringify({
     code: req.query.code || null,
-    redirect_uri: REDIRECT_URI,
+    redirect_uri: SERVER_REDIRECT_URI,
     grant_type: 'authorization_code'
   })
 
@@ -73,7 +74,7 @@ app.get('/callback', async (req: Request, res: Response) => {
         expires_in: expiresIn
       })
 
-      res.redirect(`http://localhost:3000/callback?${queryParams}`)
+      res.redirect(`${FRONTEND_REDIRECT_URI}?${queryParams}`)
     } else {
       res.redirect(`/?${querystring.stringify({ error: 'invalid_token' })}`)
     }
@@ -112,6 +113,6 @@ app.get('/refresh_token', async (req: Request, res: Response) => {
   }
 })
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`)
 })
