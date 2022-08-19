@@ -68,7 +68,7 @@ const usePlaylistById = () => {
   }, [tracksData]);
 
   // 3) Create an array of memoized tracks that is structured
-  // in a way that works with our <TrackList> component
+  // in a way that works with our <TracksGrid> component
   const tracksFiltered: SpotifyTrack[] | null = useMemo(() => {
     if (!tracks) {
       return null;
