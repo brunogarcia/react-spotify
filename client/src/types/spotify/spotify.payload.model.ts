@@ -5,6 +5,6 @@ export enum SpotifyTimeRange {
 }
 
 export interface SpotifyPayload  {
-  limit: number;
-  time_range: SpotifyTimeRange
+  limit?: number;
+  time_range?: SpotifyTimeRange
 }

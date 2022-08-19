@@ -7,4 +7,4 @@ export interface SectionType {
 export enum StyleButton {
   ACTIVE = 'active',
   INACTIVE = 'inactive'
- }
+}

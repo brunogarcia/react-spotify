@@ -1,4 +1,4 @@
-export { getTopTracks } from "./spotify/user.tracks.api"
-export { default as getTopArtists } from "./spotify/user.artists.api"
-export { default as getUserProfile } from "./spotify/user.profile.api"
-export { getPlaylistById, getUserPlaylists, getPlaylistTracks } from "./spotify/user.playlists.api"
+export { fetchTopTracks } from "./spotify/user.tracks.api"
+export { fetchTopArtists } from "./spotify/user.artists.api"
+export { fetchUserProfile } from "./spotify/user.profile.api"
+export { fetchPlaylists, getPlaylistById, getPlaylistTracks } from "./spotify/user.playlists.api"

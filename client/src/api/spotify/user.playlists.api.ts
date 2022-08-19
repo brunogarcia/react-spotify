@@ -1,5 +1,10 @@
 import axios from "../config/axios.config";
-import { SpotifyPlaylist, SpotifyPlaylists, SpotifyPlaylistTracks } from "../../types/spotify.model";
+import {
+  SpotifyPayload,
+  SpotifyPlaylist,
+  SpotifyPlaylists,
+  SpotifyPlaylistTracks
+} from "../../types/spotify.model";
 
 /**
  * Get a Playlist
@@ -20,23 +25,14 @@ import { SpotifyPlaylist, SpotifyPlaylists, SpotifyPlaylistTracks } from "../../
 /**
  * Get a List of Current User's Playlists
  *
+ * @param {SpotifyPayload} params - The parameters to pass to the API
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-a-list-of-current-users-playlists
  * @returns {Promise<SpotifyPlaylists>} Current User's Playlists
  */
-export const getUserPlaylists = async (
-  limit = 10
-): Promise<SpotifyPlaylists> => {
-  const params = {
-    limit,
-  };
-
-  try {
-    const { data } = await axios.get<SpotifyPlaylists>("/me/playlists", { params });
-    return data;
-  } catch (error) {
-    throw error;
-  }
-};
+export const fetchPlaylists = async ({ limit }: SpotifyPayload): Promise<SpotifyPlaylists> => {
+  const params = { limit };
+  return axios.get('/me/playlists', { params }).then(response => response.data);
+}
 
 /**
  * Get tracks of a playlist
