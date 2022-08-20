@@ -1,5 +1,6 @@
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import { GlobalStyle } from "./styles";
 import { useToken, useScroll as ScrollToTop } from "./hooks";
@@ -45,6 +46,7 @@ function App() {
           )}
         </header>
       </div>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
