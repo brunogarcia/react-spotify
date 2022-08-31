@@ -36,6 +36,6 @@ export default function handler (request: VercelRequest, response: VercelRespons
     response_type: 'code'
   })
 
-  response.setHeader('Set-Cookie', cookie);
+  response.setHeader('Set-Cookie', cookie)
   response.redirect(`https://accounts.spotify.com/authorize?${params}`)
 }

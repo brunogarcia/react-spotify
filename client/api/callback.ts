@@ -1,5 +1,5 @@
-import axios, { type AxiosResponse } from 'axios';
 import querystring from 'query-string'
+import axios, { type AxiosResponse } from 'axios';
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 const CLIENT_ID = process.env.CLIENT_ID
