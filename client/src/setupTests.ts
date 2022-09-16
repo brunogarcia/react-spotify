@@ -19,16 +19,16 @@ jest.mock("./hooks", () => ({
   useToken: () => ({
     token: null,
   }),
-  useUserProfile: () => ({
+  useProfile: () => ({
     profile: mockProfile(),
   }),
-  useUserTracks: () => ({
-    topTracks: mockUserTracks(),
+  useTracks: () => ({
+    tracks: mockUserTracks(),
   }),
-  useUserArtists: () => ({
-    topArtists: mockUserArtists()
+  useArtists: () => ({
+    artists: mockUserArtists()
   }),
-  useUserPlaylists: () => ({
+  usePlaylists: () => ({
     playlists: mockUserPlaylists()
   }),
 }))
