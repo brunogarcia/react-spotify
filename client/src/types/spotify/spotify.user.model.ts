@@ -1,26 +1,5 @@
 import {SpotifyTrack} from './spotify.track.model';
 import {SpotifyArtist} from './spotify.artist.model';
-import {
-  SpotifyExplicitContent,
-  SpotifyExternalUrls,
-  SpotifyFollowers,
-  SpotifyImage
-} from './spotify.common.model';
-
-export interface SpotifyUser {
-  country: string;
-  display_name: string;
-  email: string;
-  explicit_content: SpotifyExplicitContent;
-  external_urls: SpotifyExternalUrls;
-  followers: SpotifyFollowers;
-  href: string;
-  id: string;
-  images: SpotifyImage[];
-  product: string;
-  type: string;
-  uri: string;
-}
 
 export interface SpotifyUserTopItems {
   href: string;

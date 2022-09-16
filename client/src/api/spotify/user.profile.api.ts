@@ -1,11 +1,11 @@
 import axios from "../config/axios.config";
-import { SpotifyUser } from "../../types/spotify.model";
+import { SpotifyProfile } from "../../types/spotify.model";
 
 /**
  * Get Current User's Profile
  *
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile
- * @returns {Promise<SpotifyUser>} User's Profile
+ * @returns {Promise<SpotifyProfile>} Spotify Profile
  */
-export const fetchUserProfile = async (): Promise<SpotifyUser> =>
+export const fetchUserProfile = async (): Promise<SpotifyProfile> =>
   axios.get("/me").then(response => response.data);

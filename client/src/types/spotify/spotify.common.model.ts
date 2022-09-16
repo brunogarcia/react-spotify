@@ -1,13 +1,19 @@
-export interface SpotifyImage {
-  height: number;
-  url: string;
-  width: number;
-}
+import { z } from 'zod';
 
-export interface SpotifyFollowers {
-  href: string;
-  total: number;
-}
+export const SpotifyImageSchema = z.object({
+  height: z.number(),
+  url: z.string(),
+  width: z.number(),
+});
+
+export const SpotifyFollowersSchema = z.object({
+  href: z.string(),
+  total: z.number(),
+});
+
+export type SpotifyImage  = z.infer<typeof SpotifyImageSchema>;
+
+export type SpotifyFollowers = z.infer<typeof SpotifyFollowersSchema>;
 
 export interface SpotifyExternalUrls {
   spotify: string;
