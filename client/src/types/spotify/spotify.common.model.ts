@@ -15,23 +15,20 @@ export const SpotifyExternalUrlsSchema = z.object({
   spotify: z.string(),
 });
 
+export const SpotifyOwnerSchema = z.object({
+  href: z.string(),
+  id: z.string(),
+  type: z.string(),
+  uri: z.string(),
+  display_name: z.string(),
+  followers: SpotifyFollowersSchema,
+  external_urls: SpotifyExternalUrlsSchema,
+});
+
 export type SpotifyImage  = z.infer<typeof SpotifyImageSchema>;
 
 export type SpotifyFollowers = z.infer<typeof SpotifyFollowersSchema>;
 
 export type SpotifyExternalUrls = z.infer<typeof SpotifyExternalUrlsSchema>;
 
-export interface SpotifyExplicitContent {
-  filter_enabled: boolean;
-  filter_locked: boolean;
-}
-
-export interface SpotifyOwner {
-  external_urls: SpotifyExternalUrls;
-  followers: SpotifyFollowers;
-  href: string;
-  id: string;
-  type: string;
-  uri: string;
-  display_name: string;
-}
+export type SpotifyOwner  = z.infer<typeof SpotifyOwnerSchema>;
