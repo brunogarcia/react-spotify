@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
-import { SpotifyTrackSchema } from "./spotify.track.model";
+import { SpotifyTrackSchema } from "../schema/spotify.track.schema";
 import {
-  SpotifyExternalUrlsSchema,
-  SpotifyFollowersSchema,
   SpotifyImageSchema,
   SpotifyOwnerSchema,
-} from './spotify.common.model';
+  SpotifyFollowersSchema,
+  SpotifyExternalUrlsSchema,
+} from './spotify.common.schema';
 
-const SpotifyPlaylistTrackSchema = z.object({
+export const SpotifyPlaylistTrackSchema = z.object({
   added_at: z.string(),
   added_by: z.object({
     external_urls: SpotifyExternalUrlsSchema,
@@ -21,7 +21,7 @@ const SpotifyPlaylistTrackSchema = z.object({
   }),
 });
 
-const SpotifyPlaylistTracksSchema = z.object({
+export const SpotifyPlaylistTracksSchema = z.object({
   href: z.string(),
   limit: z.number(),
   next: z.string(),
@@ -31,7 +31,7 @@ const SpotifyPlaylistTracksSchema = z.object({
   items: z.array(SpotifyPlaylistTrackSchema),
 });
 
-const SpotifyPlaylistSchema = z.object({
+export const SpotifyPlaylistSchema = z.object({
   collaborative: z.boolean(),
   description: z.string().or(z.null()),
   external_urls: SpotifyExternalUrlsSchema,
@@ -48,7 +48,7 @@ const SpotifyPlaylistSchema = z.object({
   uri: z.string(),
 });
 
-const SpotifyPlaylistsSchema = z.object({
+export const SpotifyPlaylistsSchema = z.object({
   href: z.string(),
   items: z.array(SpotifyPlaylistSchema),
   limit: z.number(),
@@ -57,11 +57,3 @@ const SpotifyPlaylistsSchema = z.object({
   previous: z.string().or(z.null()),
   total: z.number(),
 });
-
-export type SpotifyPlaylistTrack = z.infer<typeof SpotifyPlaylistTrackSchema>;
-
-export type SpotifyPlaylistTracks = z.infer<typeof SpotifyPlaylistTracksSchema>;
-
-export type SpotifyPlaylist = z.infer<typeof SpotifyPlaylistSchema>;
-
-export type SpotifyPlaylists  = z.infer<typeof SpotifyPlaylistsSchema>;

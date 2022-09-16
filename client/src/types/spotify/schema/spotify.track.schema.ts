@@ -1,8 +1,8 @@
 import { z } from 'zod';
 
-import { SpotifyAlbumSchema } from './spotify.album.model';
-import { SpotifyArtistSchema } from './spotify.artist.model';
-import { SpotifyExternalUrlsSchema } from './spotify.common.model';
+import { SpotifyAlbumSchema } from './spotify.album.schema';
+import { SpotifyArtistSchema } from './spotify.artist.schema';
+import { SpotifyExternalUrlsSchema } from './spotify.common.schema';
 
 export const SpotifyTrackSchema = z.object({
   album: SpotifyAlbumSchema,
@@ -23,7 +23,7 @@ export const SpotifyTrackSchema = z.object({
   uri: z.string(),
 });
 
-const SpotifyTracksSchema = z.object({
+export const SpotifyTracksSchema = z.object({
   href: z.string(),
   items: z.array(SpotifyTrackSchema),
   limit: z.number(),
@@ -32,7 +32,3 @@ const SpotifyTracksSchema = z.object({
   previous: z.string(),
   total: z.number(),
 });
-
-export type SpotifyTrack = z.infer<typeof SpotifyTrackSchema>;
-
-export type SpotifyTracks = z.infer<typeof SpotifyTracksSchema>;

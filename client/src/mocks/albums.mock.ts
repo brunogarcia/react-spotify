@@ -1,4 +1,4 @@
-import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
+import { SpotifyAlbum } from "../types/spotify/model/spotify.album.model";
 import { mockArtists } from "./artists.mock";
 
 export function mockAlbums(): SpotifyAlbum[] {

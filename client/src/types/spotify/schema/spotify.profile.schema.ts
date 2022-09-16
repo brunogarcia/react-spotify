@@ -3,12 +3,10 @@ import { z } from 'zod';
 import {
   SpotifyImageSchema,
   SpotifyFollowersSchema,
-} from './spotify.common.model';
+} from './spotify.common.schema';
 
-const SpotifyProfileSchema = z.object({
+export const SpotifyProfileSchema = z.object({
   display_name: z.string(),
   images: z.array(SpotifyImageSchema),
   followers: SpotifyFollowersSchema,
 });
-
-export type SpotifyProfile = z.infer<typeof SpotifyProfileSchema>;

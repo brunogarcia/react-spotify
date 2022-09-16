@@ -3,7 +3,7 @@ import {
   SpotifyImageSchema,
   SpotifyFollowersSchema,
   SpotifyExternalUrlsSchema,
-} from './spotify.common.model';
+} from './spotify.common.schema';
 
 export const SpotifyArtistSchema = z.object({
   external_urls: SpotifyExternalUrlsSchema,
@@ -17,5 +17,3 @@ export const SpotifyArtistSchema = z.object({
   type: z.literal('artist'),
   uri: z.string()
 });
-
-export type SpotifyArtist = z.infer<typeof SpotifyArtistSchema>;

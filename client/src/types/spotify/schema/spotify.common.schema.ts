@@ -24,11 +24,3 @@ export const SpotifyOwnerSchema = z.object({
   followers: SpotifyFollowersSchema,
   external_urls: SpotifyExternalUrlsSchema,
 });
-
-export type SpotifyImage  = z.infer<typeof SpotifyImageSchema>;
-
-export type SpotifyFollowers = z.infer<typeof SpotifyFollowersSchema>;
-
-export type SpotifyExternalUrls = z.infer<typeof SpotifyExternalUrlsSchema>;
-
-export type SpotifyOwner  = z.infer<typeof SpotifyOwnerSchema>;

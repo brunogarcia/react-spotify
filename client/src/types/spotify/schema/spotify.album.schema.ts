@@ -1,9 +1,10 @@
 import { z } from 'zod';
-import { SpotifyArtistSchema } from './spotify.artist.model';
+
+import { SpotifyArtistSchema } from './spotify.artist.schema';
 import {
   SpotifyImageSchema,
   SpotifyExternalUrlsSchema,
-} from './spotify.common.model';
+} from './spotify.common.schema';
 
 export const SpotifyAlbumSchema = z.object({
   album_type: z.string(),
@@ -20,5 +21,3 @@ export const SpotifyAlbumSchema = z.object({
   type: z.literal('album'),
   uri: z.string()
 });
-
-export type SpotifyAlbum = z.infer<typeof SpotifyAlbumSchema>;
