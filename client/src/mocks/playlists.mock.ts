@@ -56,6 +56,7 @@ export function mockPlaylists(): SpotifyPlaylist[] {
       }],
       name: "test 001",
       owner: {
+        display_name: "test 011",
         external_urls: {
           spotify: "test"
         },
@@ -67,7 +68,6 @@ export function mockPlaylists(): SpotifyPlaylist[] {
         id: "011",
         type: "test",
         uri: "test",
-        display_name: "test 011",
       },
       public: true,
       snapshot_id: "test",

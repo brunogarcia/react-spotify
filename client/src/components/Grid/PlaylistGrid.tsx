@@ -17,8 +17,6 @@ const PlaylistGrid = ({ loading, playlist }: PlaylistGridProps) => {
           <Image
             alt="Playlist Artwork"
             className="header__img"
-            width={160}
-            height={160}
             images={playlist.images}
           />
           <div>

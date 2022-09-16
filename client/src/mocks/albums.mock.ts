@@ -1,4 +1,4 @@
-import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
+import { SpotifyAlbum } from "../types/spotify/model/spotify.album.model";
 import { mockArtists } from "./artists.mock";
 
 export function mockAlbums(): SpotifyAlbum[] {
@@ -21,7 +21,7 @@ export function mockAlbums(): SpotifyAlbum[] {
       release_date: "test",
       release_date_precision: "test",
       total_tracks: 10,
-      type: "test",
+      type: "album",
       uri: "test",
     }
   ]

@@ -41,7 +41,7 @@ const StyledHeader = styled.header`
   }
 
   img.header__img {
-    width: 20%;
+    width: 40%;
     max-width: 250px;
     min-width: 120px;
     margin-right: var(--spacing-lg);
@@ -63,7 +63,7 @@ const StyledHeader = styled.header`
   }
 
   h1.header__name {
-    font-size: clamp(2.5rem, 10vw, 6rem);
+    font-size: clamp(2.5rem, 10vw, 4rem);
     font-weight: 900;
     line-height: 1;
     margin: 0 0 var(--spacing-xs) 0;

@@ -1,25 +1,23 @@
-export type { SpotifyImage } from "./spotify/spotify.common.model";
-export type { SpotifyArtist } from "./spotify/spotify.artist.model";
+export { SpotifyTimeRange } from "./spotify/enum/spotify.payload.enum";
+
+export type { SpotifyImage } from "./spotify/model/spotify.common.model";
+export type { SpotifyArtist } from "./spotify/model/spotify.artist.model";
+export type { SpotifyPayload } from "./spotify/model/spotify.payload.model";
+export type { SpotifyProfile } from "./spotify/model/spotify.profile.model";
+
+export type {
+  SpotifyUserTopTracks,
+  SpotifyUserTopArtists,
+} from "./spotify/model/spotify.user.model";
 
 export type {
   SpotifyTrack,
   SpotifyTracks,
-} from "./spotify/spotify.track.model";
-
-export {
-  SpotifyTimeRange,
-  type SpotifyPayload,
-} from "./spotify/spotify.payload.model";
+} from "./spotify/model/spotify.track.model";
 
 export type {
   SpotifyPlaylist,
   SpotifyPlaylists,
   SpotifyPlaylistTrack,
   SpotifyPlaylistTracks,
-} from "./spotify/spotify.playlist.model";
-
-export type {
-  SpotifyUser,
-  SpotifyUserTopArtists,
-  SpotifyUserTopTracks,
-} from "./spotify/spotify.user.model";
+} from "./spotify/model/spotify.playlist.model";

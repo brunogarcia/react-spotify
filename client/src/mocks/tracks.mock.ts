@@ -1,5 +1,5 @@
 import { SpotifyTrack, SpotifyUserTopTracks } from "../types/spotify.model";
-import { SpotifyAlbum } from "../types/spotify/spotify.album.model";
+import { SpotifyAlbum } from "../types/spotify/model/spotify.album.model";
 import { mockAlbum } from "./albums.mock";
 import { mockArtists } from "./artists.mock";
 
@@ -22,7 +22,7 @@ export function mockTracks(): SpotifyTrack[] {
       popularity: 10,
       preview_url: "test",
       track_number: 10,
-      type: "test",
+      type: "track",
       uri: "test"
     }
   ]
