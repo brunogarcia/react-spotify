@@ -21,7 +21,7 @@ export function mockAlbums(): SpotifyAlbum[] {
       release_date: "test",
       release_date_precision: "test",
       total_tracks: 10,
-      type: "test",
+      type: "album",
       uri: "test",
     }
   ]

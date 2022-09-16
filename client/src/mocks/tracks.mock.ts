@@ -22,7 +22,7 @@ export function mockTracks(): SpotifyTrack[] {
       popularity: 10,
       preview_url: "test",
       track_number: 10,
-      type: "test",
+      type: "track",
       uri: "test"
     }
   ]

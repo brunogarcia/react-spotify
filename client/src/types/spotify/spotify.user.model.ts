@@ -1,19 +1,24 @@
-import {SpotifyTrack} from './spotify.track.model';
-import {SpotifyArtist} from './spotify.artist.model';
+import { z } from 'zod';
+import { SpotifyTrackSchema } from './spotify.track.model';
+import { SpotifyArtistSchema } from './spotify.artist.model';
 
-export interface SpotifyUserTopItems {
-  href: string;
-  limit: number;
-  next: string;
-  offset: number;
-  previous: string;
-  total: number;
-}
+const SpotifyUserTopItemsSchema = z.object({
+  href: z.string(),
+  limit: z.number(),
+  next: z.string(),
+  offset: z.number(),
+  previous: z.string(),
+  total: z.number(),
+});
 
-export interface SpotifyUserTopArtists extends SpotifyUserTopItems {
-  items: SpotifyArtist[];
-}
+const SpotifyUserTopArtistsSchema = SpotifyUserTopItemsSchema.extend({
+  items: z.array(SpotifyArtistSchema),
+});
 
-export interface SpotifyUserTopTracks extends SpotifyUserTopItems {
-  items: SpotifyTrack[];
-}
+const SpotifyUserTopTracksSchema = SpotifyUserTopItemsSchema.extend({
+  items: z.array(SpotifyTrackSchema),
+});
+
+export type SpotifyUserTopArtists = z.infer<typeof SpotifyUserTopArtistsSchema>;
+
+export type SpotifyUserTopTracks = z.infer<typeof SpotifyUserTopTracksSchema>;

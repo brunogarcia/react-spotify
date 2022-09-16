@@ -11,13 +11,15 @@ export const SpotifyFollowersSchema = z.object({
   total: z.number(),
 });
 
+export const SpotifyExternalUrlsSchema = z.object({
+  spotify: z.string(),
+});
+
 export type SpotifyImage  = z.infer<typeof SpotifyImageSchema>;
 
 export type SpotifyFollowers = z.infer<typeof SpotifyFollowersSchema>;
 
-export interface SpotifyExternalUrls {
-  spotify: string;
-}
+export type SpotifyExternalUrls = z.infer<typeof SpotifyExternalUrlsSchema>;
 
 export interface SpotifyExplicitContent {
   filter_enabled: boolean;

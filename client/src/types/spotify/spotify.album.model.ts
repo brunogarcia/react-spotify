@@ -1,21 +1,24 @@
-import { SpotifyArtist } from './spotify.artist.model';
+import { z } from 'zod';
+import { SpotifyArtistSchema } from './spotify.artist.model';
 import {
-  SpotifyExternalUrls,
-  SpotifyImage
+  SpotifyImageSchema,
+  SpotifyExternalUrlsSchema,
 } from './spotify.common.model';
 
-export interface SpotifyAlbum {
-  album_type: string;
-  artists: SpotifyArtist[];
-  available_markets: string[];
-  external_urls: SpotifyExternalUrls;
-  href: string;
-  id: string;
-  images: SpotifyImage[];
-  name: string;
-  release_date: string;
-  release_date_precision: string;
-  total_tracks: number;
-  type: string;
-  uri: string;
-}
+export const SpotifyAlbumSchema = z.object({
+  album_type: z.string(),
+  artists: z.array(SpotifyArtistSchema),
+  available_markets: z.array(z.string()),
+  external_urls: SpotifyExternalUrlsSchema,
+  href: z.string(),
+  id: z.string(),
+  images: z.array(SpotifyImageSchema),
+  name: z.string(),
+  release_date: z.string(),
+  release_date_precision: z.string(),
+  total_tracks: z.number(),
+  type: z.literal('album'),
+  uri: z.string()
+});
+
+export type SpotifyAlbum = z.infer<typeof SpotifyAlbumSchema>;
