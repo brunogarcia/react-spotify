@@ -3,7 +3,7 @@ import {
   SectionWrapper,
   LoaderList,
   ErrorMessage,
-  PlaylistsGrid,
+  Playlists,
 } from '../../components';
 
 const ProfilePlaylists = () => {
@@ -14,7 +14,7 @@ const ProfilePlaylists = () => {
       {
         isLoading ? <LoaderList /> :
         error ? <ErrorMessage message={"No playlists available"} /> :
-        playlists && <PlaylistsGrid playlists={playlists.items} />
+        playlists && <Playlists playlists={playlists.items} />
       }
     </SectionWrapper>
   );

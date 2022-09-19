@@ -4,7 +4,7 @@ import {
   SectionWrapper,
   LoaderList,
   ErrorMessage,
-  TracksGrid,
+  Tracks,
 } from '../../components';
 
 const payload: SpotifyPayload = {
@@ -24,7 +24,7 @@ const ProfileTopTracks = () => {
       {
       isLoading ? <LoaderList /> :
       error ? <ErrorMessage message={"No tracks available"} /> :
-      tracks && <TracksGrid tracks={tracks.items} />
+      tracks && <Tracks tracks={tracks.items} />
       }
     </SectionWrapper>
   );
