@@ -1,13 +1,13 @@
-import { Image } from '../../components';
+import { Image } from '..';
 import { formatDuration } from '../../utils';
 import { StyledTrackList } from '../../styles';
 import { SpotifyTrack } from "../../types/spotify.model";
 
-type TracksGridProps = {
+type TracksProps = {
   tracks: SpotifyTrack[];
 }
 
-const TracksGrid = ({ tracks }: TracksGridProps) => (
+const Tracks = ({ tracks }: TracksProps) => (
   <StyledTrackList>
     {tracks.map((track, i) => (
       <li className="track__item" key={track.id} data-testid="grid__item__tracks">
@@ -40,4 +40,4 @@ const TracksGrid = ({ tracks }: TracksGridProps) => (
   </StyledTrackList>
 );
 
-export default TracksGrid;
+export default Tracks;

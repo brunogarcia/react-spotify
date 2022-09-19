@@ -4,7 +4,7 @@ import {
   SectionWrapper,
   LoaderList,
   ErrorMessage,
-  ArtistsGrid,
+  Artists,
 } from '../../components';
 
 const payload: SpotifyPayload = {
@@ -20,7 +20,7 @@ const ProfileTopArtists = () => {
       {
         isLoading ? <LoaderList /> :
         error ? <ErrorMessage message={"No artists available"} /> :
-        artists && <ArtistsGrid artists={artists.items} />
+        artists && <Artists artists={artists.items} />
       }
     </SectionWrapper>
   );

@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { Image } from '../../components';
+import { Image } from '..';
 import { StyledGrid } from '../../styles';
 import { SpotifyPlaylist } from '../../types/spotify.model';
 
-type PlaylistsGridProps = {
+type PlaylistsProps = {
   playlists: SpotifyPlaylist[];
 }
 
-const PlaylistsGrid = ({ playlists }: PlaylistsGridProps) => (
+const Playlists = ({ playlists }: PlaylistsProps) => (
   <StyledGrid type="none">
     {playlists.map((playlist, i) => (
       <li className="grid__item" key={playlist.id} data-testid="grid__item__playlist">
@@ -25,4 +25,4 @@ const PlaylistsGrid = ({ playlists }: PlaylistsGridProps) => (
   </StyledGrid>
 );
 
-export default PlaylistsGrid;
+export default Playlists;
