@@ -21,5 +21,6 @@ import {
     time_range,
   };
 
-  return axios.get("/me/top/tracks", { params }).then(response => response.data);
+  const { data } = await axios.get<SpotifyUserTopTracks>("/me/top/tracks", { params })
+  return data;
 };

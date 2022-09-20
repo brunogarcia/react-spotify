@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useMemo } from "react";
-import { getPlaylistById, getPlaylistTracks } from "../api/spotify.api";
+import { fetchPlaylistById, fetchPlaylistTracks } from "../api/spotify.api";
 import {
   SpotifyTrack,
   SpotifyPlaylist,
@@ -35,7 +35,7 @@ const usePlaylist = (): PlaylistProps => {
 
     const fetchData = async () => {
       try {
-        const data = await getPlaylistById(id);
+        const data = await fetchPlaylistById(id);
         setPlaylist(data);
         setLoadingPlaylist(false);
         setTracksData(data.tracks);
@@ -57,7 +57,7 @@ const usePlaylist = (): PlaylistProps => {
     // then update the state variable
     const fetchMoreData = async () => {
       try {
-        const nextData = await getPlaylistTracks(tracksData.next);
+        const nextData = await fetchPlaylistTracks(tracksData.next);
         setTracksData(nextData);
       } catch (error) {
         console.error(error);
