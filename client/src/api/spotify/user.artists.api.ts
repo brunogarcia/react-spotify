@@ -20,5 +20,6 @@ import {
     limit,
     time_range,
   };
-   return axios.get('/me/top/artists', { params }).then(response => response.data);
+   const { data } = await axios.get<SpotifyUserTopArtists>('/me/top/artists', { params });
+   return data;
  }

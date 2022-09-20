@@ -13,7 +13,7 @@ import {
  * @param {string} id - The Spotify ID for the playlist
  * @returns {Promise<SpotifyPlaylist>} The playlist resource
  */
- export const getPlaylistById = async (id: string): Promise<SpotifyPlaylist> => {
+ export const fetchPlaylistById = async (id: string): Promise<SpotifyPlaylist> => {
   try {
     const { data } = await axios.get<SpotifyPlaylist>(`/playlists/${id}`);
     return data;
@@ -31,17 +31,18 @@ import {
  */
 export const fetchPlaylists = async ({ limit }: SpotifyPayload): Promise<SpotifyPlaylists> => {
   const params = { limit };
-  return axios.get('/me/playlists', { params }).then(response => response.data);
+  const { data } = await axios.get<SpotifyPlaylists>('/me/playlists', { params });
+  return data;
 }
 
 /**
  * Get tracks of a playlist
  *
- * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlists-tracks
  * @param url {string} - URL to the next page of tracks
+ * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-playlists-tracks
  * @returns {SpotifyPlaylistTracks} The tracks of the playlist
  */
- export const getPlaylistTracks = async (url: string): Promise<SpotifyPlaylistTracks> => {
+ export const fetchPlaylistTracks = async (url: string): Promise<SpotifyPlaylistTracks> => {
   try {
     const { data } = await axios.get<SpotifyPlaylistTracks>(url);
     return data;

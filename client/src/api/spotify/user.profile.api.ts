@@ -7,5 +7,7 @@ import { SpotifyProfile } from "../../types/spotify.model";
  * @link https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile
  * @returns {Promise<SpotifyProfile>} Spotify Profile
  */
-export const fetchUserProfile = async (): Promise<SpotifyProfile> =>
-  axios.get("/me").then(response => response.data);
+export const fetchUserProfile = async (): Promise<SpotifyProfile> => {
+  const { data } = await axios.get<SpotifyProfile>("/me")
+  return data;
+}
