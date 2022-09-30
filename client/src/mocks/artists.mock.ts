@@ -18,7 +18,7 @@ export function mockArtists(): SpotifyArtist[] {
         url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 001",
+      name: "Artist 001",
       popularity: 10,
       type: "artist",
       uri: "test"
@@ -39,7 +39,7 @@ export function mockArtists(): SpotifyArtist[] {
         url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 002",
+      name: "Artist 002",
       popularity: 10,
       type: "artist",
       uri: "test"
@@ -60,7 +60,7 @@ export function mockArtists(): SpotifyArtist[] {
         url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 003",
+      name: "Artist 003",
       popularity: 10,
       type: "artist",
       uri: "test"
@@ -81,7 +81,7 @@ export function mockArtists(): SpotifyArtist[] {
         url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 004",
+      name: "Artist 004",
       popularity: 10,
       type: "artist",
       uri: "test"
@@ -102,7 +102,7 @@ export function mockArtists(): SpotifyArtist[] {
         url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 005",
+      name: "Artist 005",
       popularity: 10,
       type: "artist",
       uri: "test"
@@ -123,7 +123,7 @@ export function mockArtists(): SpotifyArtist[] {
         url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 006",
+      name: "Artist 006",
       popularity: 10,
       type: "artist",
       uri: "test"
