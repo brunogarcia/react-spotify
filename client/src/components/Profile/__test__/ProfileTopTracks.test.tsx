@@ -7,6 +7,6 @@ describe("ProfileTopTracks", () => {
   test("render the top tracks", () =>  {
     render(<ProfileTopTracks />);
     const items = screen.getAllByTestId("grid__item__tracks");
-    expect(items.length).toBe(1);
+    expect(items.length).toBe(2);
   });
 });

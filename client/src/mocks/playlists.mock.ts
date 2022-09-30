@@ -51,10 +51,162 @@ export function mockPlaylists(): SpotifyPlaylist[] {
       id: "001",
       images: [{
         height: 100,
-        url: "test",
+        url: "https://via.placeholder.com/150",
         width: 100,
       }],
-      name: "test 001",
+      name: "Playlist 001",
+      owner: {
+        display_name: "test 011",
+        external_urls: {
+          spotify: "test"
+        },
+        followers: {
+          href: "test",
+          total: 100
+        },
+        href: "test",
+        id: "011",
+        type: "test",
+        uri: "test",
+      },
+      public: true,
+      snapshot_id: "test",
+      tracks: mockPlaylistTracks(),
+      type: "test",
+      uri: "test",
+    },
+    {
+      collaborative: true,
+      description: "test",
+      external_urls: {
+        spotify: "test"
+      },
+      followers: {
+        href: "test",
+        total: 100
+      },
+      href: "test",
+      id: "002",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "Playlist 002",
+      owner: {
+        display_name: "test 011",
+        external_urls: {
+          spotify: "test"
+        },
+        followers: {
+          href: "test",
+          total: 100
+        },
+        href: "test",
+        id: "011",
+        type: "test",
+        uri: "test",
+      },
+      public: true,
+      snapshot_id: "test",
+      tracks: mockPlaylistTracks(),
+      type: "test",
+      uri: "test",
+    },
+    {
+      collaborative: true,
+      description: "test",
+      external_urls: {
+        spotify: "test"
+      },
+      followers: {
+        href: "test",
+        total: 100
+      },
+      href: "test",
+      id: "003",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "Playlist 003",
+      owner: {
+        display_name: "test 011",
+        external_urls: {
+          spotify: "test"
+        },
+        followers: {
+          href: "test",
+          total: 100
+        },
+        href: "test",
+        id: "011",
+        type: "test",
+        uri: "test",
+      },
+      public: true,
+      snapshot_id: "test",
+      tracks: mockPlaylistTracks(),
+      type: "test",
+      uri: "test",
+    },
+    {
+      collaborative: true,
+      description: "test",
+      external_urls: {
+        spotify: "test"
+      },
+      followers: {
+        href: "test",
+        total: 100
+      },
+      href: "test",
+      id: "004",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "Playlist 004",
+      owner: {
+        display_name: "test 011",
+        external_urls: {
+          spotify: "test"
+        },
+        followers: {
+          href: "test",
+          total: 100
+        },
+        href: "test",
+        id: "011",
+        type: "test",
+        uri: "test",
+      },
+      public: true,
+      snapshot_id: "test",
+      tracks: mockPlaylistTracks(),
+      type: "test",
+      uri: "test",
+    },
+    {
+      collaborative: true,
+      description: "test",
+      external_urls: {
+        spotify: "test"
+      },
+      followers: {
+        href: "test",
+        total: 100
+      },
+      href: "test",
+      id: "005",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "Playlist 005",
       owner: {
         display_name: "test 011",
         external_urls: {
