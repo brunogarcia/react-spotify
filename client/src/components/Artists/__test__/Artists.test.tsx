@@ -10,5 +10,5 @@ const artists: SpotifyArtist[] = mockArtists();
 test("renders the artists list", () =>  {
   render(<Artists artists={artists} />);
   const items = screen.getAllByTestId("grid__item__artist");
-  expect(items.length).toBe(2);
+  expect(items.length).toBe(6);
 });

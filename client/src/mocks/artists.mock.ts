@@ -15,7 +15,7 @@ export function mockArtists(): SpotifyArtist[] {
       id: "001",
       images: [{
         height: 100,
-        url: "test",
+        url: "https://via.placeholder.com/150",
         width: 100,
       }],
       name: "test 001",
@@ -36,10 +36,94 @@ export function mockArtists(): SpotifyArtist[] {
       id: "002",
       images: [{
         height: 100,
-        url: "test",
+        url: "https://via.placeholder.com/150",
         width: 100,
       }],
       name: "test 002",
+      popularity: 10,
+      type: "artist",
+      uri: "test"
+    },
+    {
+      external_urls: {
+        spotify: ""
+      },
+      followers: {
+        href: "test",
+        total: 10
+      },
+      genres: ["test"],
+      href: "test",
+      id: "003",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "test 003",
+      popularity: 10,
+      type: "artist",
+      uri: "test"
+    },
+    {
+      external_urls: {
+        spotify: ""
+      },
+      followers: {
+        href: "test",
+        total: 10
+      },
+      genres: ["test"],
+      href: "test",
+      id: "004",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "test 004",
+      popularity: 10,
+      type: "artist",
+      uri: "test"
+    },
+    {
+      external_urls: {
+        spotify: ""
+      },
+      followers: {
+        href: "test",
+        total: 10
+      },
+      genres: ["test"],
+      href: "test",
+      id: "005",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "test 005",
+      popularity: 10,
+      type: "artist",
+      uri: "test"
+    },
+    {
+      external_urls: {
+        spotify: ""
+      },
+      followers: {
+        href: "test",
+        total: 10
+      },
+      genres: ["test"],
+      href: "test",
+      id: "006",
+      images: [{
+        height: 100,
+        url: "https://via.placeholder.com/150",
+        width: 100,
+      }],
+      name: "test 006",
       popularity: 10,
       type: "artist",
       uri: "test"
