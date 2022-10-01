@@ -1,14 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Artists } from '../index';
-import { mockArtists } from "../../mocks";
-import { SpotifyArtist } from '../../types/spotify.model';
+import { mockArtists } from "../mocks";
+import { Artists } from '../components';
+import { SpotifyArtist } from '../types/spotify.model';
 
 const artists: SpotifyArtist[] = mockArtists();
 
 export default {
-  title: 'Organism/Artists',
+  title: 'Components/Artists',
   component: Artists,
 } as ComponentMeta<typeof Artists>;
 
