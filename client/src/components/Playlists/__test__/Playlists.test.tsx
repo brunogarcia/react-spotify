@@ -10,5 +10,5 @@ const playlists: SpotifyPlaylist[] = mockPlaylists();
 test("renders the playlists", () =>  {
   render(<Playlists playlists={playlists} />);
   const items = screen.getAllByTestId("grid__item__playlist");
-  expect(items.length).toBe(1);
+  expect(items.length).toBe(5);
 });

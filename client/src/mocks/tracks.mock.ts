@@ -7,18 +7,38 @@ export function mockTracks(): SpotifyTrack[] {
   return [
     {
       album: mockAlbum({ id: "001" }) as SpotifyAlbum,
-      artists: mockArtists(),
+      artists: [mockArtists()[0]],
       available_markets: ["test"],
       disc_number: 1,
-      duration_ms: 1000,
+      duration_ms: 100000,
       explicit: true,
       external_urls: {
         spotify: "test"
       },
       href: "test",
-      id: "test",
+      id: "001",
       is_local: true,
-      name: "test",
+      name: "Track name 001",
+      popularity: 10,
+      preview_url: "test",
+      track_number: 10,
+      type: "track",
+      uri: "test"
+    },
+    {
+      album: mockAlbum({ id: "002" }) as SpotifyAlbum,
+      artists: [mockArtists()[1]],
+      available_markets: ["test"],
+      disc_number: 1,
+      duration_ms: 150000,
+      explicit: true,
+      external_urls: {
+        spotify: "test"
+      },
+      href: "test",
+      id: "002",
+      is_local: true,
+      name: "Track name 002",
       popularity: 10,
       preview_url: "test",
       track_number: 10,

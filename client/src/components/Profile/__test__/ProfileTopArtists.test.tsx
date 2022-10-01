@@ -7,6 +7,6 @@ describe("ProfileTopArtists", () => {
   test("render the top artists", () =>  {
     render(<ProfileTopArtists />);
     const items = screen.getAllByTestId("grid__item__artist");
-    expect(items.length).toBe(2);
+    expect(items.length).toBe(6);
   });
 });
