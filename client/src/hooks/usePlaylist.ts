@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect, useMemo } from "react";
-import { fetchPlaylistById, fetchPlaylistTracks } from "../api/spotify.api";
+import { fetchPlaylistById, fetchPlaylistTracks } from "../services/spotify.service";
 import {
   SpotifyTrack,
   SpotifyPlaylist,

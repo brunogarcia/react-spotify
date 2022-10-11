@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { QueryType } from "../types/query.model";
-import { fetchPlaylists } from "../api/spotify.api";
+import { fetchPlaylists } from "../services/spotify.service";
 import { SpotifyPayload } from "../types/spotify.model";
 
 function usePlaylists (payload: SpotifyPayload) {
