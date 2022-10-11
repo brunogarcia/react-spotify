@@ -1,7 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import type { SetupWorkerApi } from "msw";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+if (process.env.NODE_ENV === 'development') {
+  interface MockServiceWorker {
+    worker: SetupWorkerApi;
+  }
+
+  const msw: MockServiceWorker = require('./mocks/browser')
+  msw.worker.start({
+    onUnhandledRequest: "bypass",
+  })
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { mockPlaylists } from "../mocks";
+import { mockPlaylists } from "../mocks/data";
 import { Playlist } from '../components';
 import { SpotifyPlaylist } from '../types/spotify.model';
 

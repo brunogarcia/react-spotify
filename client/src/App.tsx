@@ -4,6 +4,7 @@ import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 import { GlobalStyle } from "./styles";
 import { useToken, useScroll as ScrollToTop } from "./hooks";
+import isApiMockEnabled from "./utils/is-api-mock-enabled";
 
 import {
   Login,
@@ -19,14 +20,15 @@ import { Logout } from "./components";
 
 function App() {
   const { token } = useToken();
-  const queryClient = new QueryClient()
+  const isLogged = !isApiMockEnabled || !!token;
+  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
         <GlobalStyle />
         <header className="App-header">
-          {!token ? (
+          {isLogged ? (
             <Login />
           ) : (
             <>

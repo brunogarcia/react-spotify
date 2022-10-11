@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { mockTracks } from "../mocks";
+import { mockTracks } from "../mocks/data";
 import { PlaylistTracks } from '../components';
 import { SpotifyTrack } from '../types/spotify.model';
 

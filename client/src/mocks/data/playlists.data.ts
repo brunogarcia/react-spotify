@@ -1,10 +1,10 @@
-import { mockTracks } from "./tracks.mock";
+import { mockTracks } from "./tracks.data";
 import {
   SpotifyPlaylist,
   SpotifyPlaylists,
   SpotifyPlaylistTrack,
   SpotifyPlaylistTracks
-} from "../types/spotify.model";
+} from "../../types/spotify.model";
 
 function mockPlaylistTrack(): SpotifyPlaylistTrack[] {
   return[ {
@@ -228,6 +228,11 @@ export function mockPlaylists(): SpotifyPlaylist[] {
       uri: "test",
     }
   ];
+}
+
+export function mockPlaylist(id: string): SpotifyPlaylist | undefined {
+  const data = mockPlaylists();
+  return data.find(item => item.id === id);
 }
 
 export function mockUserPlaylists(): SpotifyPlaylists {
