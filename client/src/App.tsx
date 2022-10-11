@@ -20,7 +20,7 @@ import { Logout } from "./components";
 
 function App() {
   const { token } = useToken();
-  const isLogged = !isApiMockEnabled || !!token;
+  const shouldLogin = !isApiMockEnabled && !token;
   const queryClient = new QueryClient();
 
   return (
@@ -28,7 +28,7 @@ function App() {
       <div className="App">
         <GlobalStyle />
         <header className="App-header">
-          {isLogged ? (
+          {shouldLogin ? (
             <Login />
           ) : (
             <>

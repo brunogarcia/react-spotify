@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { QueryType } from "../types/query.model";
-import { fetchUserProfile } from "../api/spotify.api";
+import { fetchUserProfile } from "../services/spotify.service";
 
 function useProfile () {
   const {

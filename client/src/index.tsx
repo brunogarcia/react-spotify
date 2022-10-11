@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import type { SetupWorkerApi } from "msw";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import isApiMockEnabled from "./utils/is-api-mock-enabled";
 
-if (process.env.NODE_ENV === 'development') {
+if (isApiMockEnabled) {
   interface MockServiceWorker {
     worker: SetupWorkerApi;
   }
