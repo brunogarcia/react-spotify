@@ -1,9 +1,9 @@
 import { rest, RequestHandler } from 'msw'
-import { login } from "./resolvers/login.resolver";
-import { getTracks } from "./resolvers/tracks.resolver";
-import { getArtists } from "./resolvers/artists.resolver";
-import { getProfile } from "./resolvers/profile.resolver";
-import { getPlaylist, getPlaylists } from "./resolvers/playlists.resolver";
+import { login } from "../resolvers/login.resolver";
+import { getTracks } from "../resolvers/tracks.resolver";
+import { getArtists } from "../resolvers/artists.resolver";
+import { getProfile } from "../resolvers/profile.resolver";
+import { getPlaylist, getPlaylists } from "../resolvers/playlists.resolver";
 
 export const handlers: RequestHandler[] = [
   rest.post('/login', login),

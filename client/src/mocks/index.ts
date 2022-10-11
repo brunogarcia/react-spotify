@@ -1,5 +1,0 @@
-export { mockProfile } from "./data/profile.data"
-export { mockAlbum, mockAlbums } from "./data/albums.data"
-export { mockTracks, mockUserTracks } from "./data/tracks.data"
-export { mockArtists, mockUserArtists } from "./data/artists.data"
-export { mockPlaylists, mockUserPlaylists } from "./data/playlists.data"

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import Artists from "../Artists";
-import { mockArtists } from "../../../mocks";
+import { mockArtists } from "../../../mocks/data";
 import { SpotifyArtist } from '../../../types/spotify.model';
 
 const artists: SpotifyArtist[] = mockArtists();
