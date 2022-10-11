@@ -1,4 +1,4 @@
-import { SpotifyArtist, SpotifyUserTopArtists } from '../types/spotify.model';
+import { SpotifyArtist, SpotifyUserTopArtists } from '../../types/spotify.model';
 
 export function mockArtists(): SpotifyArtist[] {
   return [

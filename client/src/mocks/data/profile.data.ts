@@ -1,4 +1,4 @@
-import { SpotifyProfile } from "../types/spotify.model";
+import { SpotifyProfile } from "../../types/spotify.model";
 
 export function mockProfile(): SpotifyProfile {
   return {
@@ -9,7 +9,7 @@ export function mockProfile(): SpotifyProfile {
     },
     images: [{
       height: 100,
-      url: "test",
+      url: "https://via.placeholder.com/150",
       width: 100,
     }],
   }

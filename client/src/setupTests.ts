@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import {
-  mockProfile,
-  mockUserTracks,
-  mockUserArtists,
+  // mockProfile,
+  // mockUserTracks,
+  // mockUserArtists,
   mockUserPlaylists,
  } from "./mocks";
 
@@ -19,15 +19,15 @@ jest.mock("./hooks", () => ({
   useToken: () => ({
     token: null,
   }),
-  useProfile: () => ({
-    profile: mockProfile(),
-  }),
-  useTracks: () => ({
-    tracks: mockUserTracks(),
-  }),
-  useArtists: () => ({
-    artists: mockUserArtists()
-  }),
+  // useProfile: () => ({
+  //   profile: mockProfile(),
+  // }),
+  // useTracks: () => ({
+  //   tracks: mockUserTracks(),
+  // }),
+  // useArtists: () => ({
+  //   artists: mockUserArtists()
+  // }),
   usePlaylists: () => ({
     playlists: mockUserPlaylists()
   }),
