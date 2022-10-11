@@ -230,6 +230,11 @@ export function mockPlaylists(): SpotifyPlaylist[] {
   ];
 }
 
+export function mockPlaylist(id: string): SpotifyPlaylist | undefined {
+  const data = mockPlaylists();
+  return data.find(item => item.id === id);
+}
+
 export function mockUserPlaylists(): SpotifyPlaylists {
   return {
     href: "test",

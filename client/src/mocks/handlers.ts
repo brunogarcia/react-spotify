@@ -7,9 +7,9 @@ import { getPlaylist, getPlaylists } from "./resolvers/playlists.resolver";
 
 export const handlers: RequestHandler[] = [
   rest.post('/login', login),
-  rest.get('api/me', getProfile),
-  rest.get('api/me/top/tracks', getTracks),
-  rest.get('api/me/top/artists', getArtists),
-  rest.get('api/playlists/:id', getPlaylist),
-  rest.get('api/me/playlists', getPlaylists),
+  rest.get('/api/me', getProfile),
+  rest.get('/api/me/top/tracks', getTracks),
+  rest.get('/api/me/top/artists', getArtists),
+  rest.get('/api/playlists/:id', getPlaylist),
+  rest.get('/api/me/playlists', getPlaylists),
 ]

@@ -3,7 +3,7 @@ import {
   // mockProfile,
   // mockUserTracks,
   // mockUserArtists,
-  mockUserPlaylists,
+  // mockUserPlaylists,
  } from "./mocks";
 
  // React Router
@@ -28,7 +28,7 @@ jest.mock("./hooks", () => ({
   // useArtists: () => ({
   //   artists: mockUserArtists()
   // }),
-  usePlaylists: () => ({
-    playlists: mockUserPlaylists()
-  }),
+  // usePlaylists: () => ({
+  //   playlists: mockUserPlaylists()
+  // }),
 }))
