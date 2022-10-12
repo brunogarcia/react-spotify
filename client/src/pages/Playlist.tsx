@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import { usePlaylist } from '../hooks';
 import {
   ErrorMessage,
@@ -6,12 +8,16 @@ import {
 } from '../components';
 
 const PlaylistPage = () => {
+  const { id } = useParams();
+
+  console.log("id", id);
+
   const {
     error,
     isLoading,
     playlist,
     tracks,
-  } = usePlaylist();
+  } = usePlaylist(id);
 
   return (
       error ? <ErrorMessage message={"No playlist available"} /> :

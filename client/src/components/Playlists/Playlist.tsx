@@ -9,7 +9,7 @@ type PlaylistProps = {
 
 const Playlist = ({ loading, playlist }: PlaylistProps) => (
   <StyledHeader type="none">
-    <div className="header__inner">
+    <div className="header__inner" data-testid="playlist__header">
     {
       loading ? <LoaderProfile /> :
       playlist && <>

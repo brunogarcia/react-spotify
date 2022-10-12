@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react'
 import * as React from 'react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 /**
@@ -23,7 +23,7 @@ const createTestQueryClient = () => new QueryClient({
 export function renderWithClient(ui: React.ReactElement) {
     const testQueryClient = createTestQueryClient()
     const { rerender, ...result } = render(
-        <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>
+        <QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>,
     )
     return {
         ...result,
