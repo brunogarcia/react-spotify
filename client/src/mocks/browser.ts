@@ -1,4 +1,4 @@
-import { setupWorker } from 'msw'
+import { setupWorker, type SetupWorkerApi } from "msw";
 import { handlers } from './handlers'
 
-export const worker = setupWorker(...handlers)
+export const worker: SetupWorkerApi = setupWorker(...handlers)

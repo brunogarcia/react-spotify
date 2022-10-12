@@ -4,6 +4,6 @@ import App from "../App";
 
 test("renders the login page", () => {
   render(<App />);
-  const link = screen.getByText(/Log in to Spotify/i);
+  const link = screen.getByText(/Log out/i);
   expect(link).toBeInTheDocument();
 });

@@ -7,5 +7,7 @@ export async function getArtists(
   res: ResponseComposition,
   ctx: RestContext
 ) {
+  // TODO: test by time_range
+  // const timeRange = req.url.searchParams.getAll("time_range");
   return res(ctx.status(HTTP_OK), ctx.json(mockUserArtists()))
 };
