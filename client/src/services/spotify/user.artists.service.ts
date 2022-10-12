@@ -20,6 +20,6 @@ import {
     limit,
     time_range,
   };
-   const { data } = await axios.get<SpotifyUserTopArtists>('/me/top/artists', { params });
+  const { data } = await axios.get<SpotifyUserTopArtists>('/me/top/artists', { params });
    return data;
  }
