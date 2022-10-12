@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { server } from "./mocks/server";
 
 // React Router
-jest.mock("react-router-dom")
+jest.mock("react-router-dom");
 
 // Run the MSW for the tests
 // https://mswjs.io/docs/getting-started/integrate/node

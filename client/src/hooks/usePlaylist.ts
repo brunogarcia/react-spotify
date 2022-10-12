@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useState, useEffect, useMemo } from "react";
 import { fetchPlaylistById, fetchPlaylistTracks } from "../services/spotify.service";
 import {
@@ -15,9 +14,7 @@ type PlaylistProps = {
   tracks: SpotifyTrack[] | null;
 };
 
-const usePlaylist = (): PlaylistProps => {
-  const { id } = useParams();
-
+const usePlaylist = (id: string | undefined): PlaylistProps => {
   const [error, setErrorPlaylist] = useState(false);
   const [isLoading, setLoadingPlaylist] = useState(true);
   const [playlist, setPlaylist] = useState<SpotifyPlaylist | null>(null);
