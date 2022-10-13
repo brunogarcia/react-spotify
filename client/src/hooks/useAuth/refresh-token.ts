@@ -1,38 +1,43 @@
 import axios from "axios";
 import { logout } from "./logout";
-import { LOCALSTORAGE_KEYS, LOCALSTORAGE_VALUES } from "./local-storage";
+import { LOCAL_STORAGE_KEYS, LOCAL_STORAGE_VALUES } from "./local-storage";
+
+/**
+ * Logout if there's no refresh token stored
+ * or we've managed to get into a reload infinite loop
+ */
+function shouldLogout(): boolean {
+  return (
+    !LOCAL_STORAGE_VALUES.refreshToken ||
+    LOCAL_STORAGE_VALUES.refreshToken === "undefined" ||
+    Date.now() - Number(LOCAL_STORAGE_VALUES.timestamp) / 1000 < 1000
+  );
+}
 
 /**
  * Use the refresh token in localStorage to hit the /refresh_token endpoint
  * in our Node app, then update values in localStorage with data from response.
- * @returns {void}
  */
-export const refreshToken = async () => {
+export const refreshToken = async (): Promise<void> => {
   try {
-    // Logout if there's no refresh token stored
-    // or we've managed to get into a reload infinite loop
-    if (
-      !LOCALSTORAGE_VALUES.refreshToken ||
-      LOCALSTORAGE_VALUES.refreshToken === "undefined" ||
-      Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000 < 1000
-    ) {
+    if (shouldLogout()) {
       console.error("No refresh token available");
       logout();
     }
 
     // Use `api/refresh_token` endpoint from the serverless function
     const { data } = await axios.get(
-      `${process.env.REACT_APP_SERVER_HOST}/refresh_token?refresh_token=${LOCALSTORAGE_VALUES.refreshToken}`
+      `${process.env.REACT_APP_SERVER_HOST}/refresh_token?refresh_token=${LOCAL_STORAGE_VALUES.refreshToken}`
     );
 
     // Update localStorage values
     window.localStorage.setItem(
-      LOCALSTORAGE_KEYS.accessToken,
+      LOCAL_STORAGE_KEYS.accessToken,
       data.access_token
     );
 
     window.localStorage.setItem(
-      LOCALSTORAGE_KEYS.timestamp,
+      LOCAL_STORAGE_KEYS.timestamp,
       Date.now().toString()
     );
 

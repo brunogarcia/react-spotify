@@ -1,5 +1,5 @@
 import type { QueryParams } from "../../types/global.model";
-import { LOCALSTORAGE_KEYS } from "./local-storage";
+import { LOCAL_STORAGE_KEYS } from "./local-storage";
 
 /**
  * Init Authorization
@@ -18,10 +18,10 @@ export const initAuth = (queryParams: QueryParams): string | null => {
 
   // Set timestamp
   window.localStorage.setItem(
-    LOCALSTORAGE_KEYS.timestamp,
+    LOCAL_STORAGE_KEYS.timestamp,
     Date.now().toString()
   );
 
   // Return access token from query params
-  return queryParams[LOCALSTORAGE_KEYS.accessToken];
+  return queryParams[LOCAL_STORAGE_KEYS.accessToken];
 };

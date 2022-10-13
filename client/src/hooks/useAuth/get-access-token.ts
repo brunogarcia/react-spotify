@@ -2,7 +2,62 @@ import { initAuth } from "./init-auth";
 import { refreshToken } from "./refresh-token";
 import type { QueryParams } from "../../types/global.model";
 import { hasTokenExpired } from "./has-token-expired";
-import { LOCALSTORAGE_KEYS, LOCALSTORAGE_VALUES } from "./local-storage";
+import { LOCAL_STORAGE_KEYS, LOCAL_STORAGE_VALUES } from "./local-storage";
+
+/**
+ * Get the access token, refresh token and expiration time from the URL query params
+ *
+ * @returns {QueryParams}
+ */
+function getQueryParams(): QueryParams {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  const queryParams: QueryParams = {
+    [LOCAL_STORAGE_KEYS.hasError]: urlParams.get("error"),
+    [LOCAL_STORAGE_KEYS.accessToken]: urlParams.get("access_token"),
+    [LOCAL_STORAGE_KEYS.refreshToken]: urlParams.get("refresh_token"),
+    [LOCAL_STORAGE_KEYS.expireTime]: urlParams.get("expires_in"),
+  };
+
+  return queryParams;
+}
+
+/**
+ * If there is a token in the URL query params, user is logging in for the first time
+ *
+ * @param {QueryParams} queryParams
+ * @returns {boolean}
+ */
+function shouldInitAuth(queryParams: QueryParams): boolean {
+  return  Boolean(queryParams[LOCAL_STORAGE_KEYS.accessToken]);
+}
+
+/**
+ * If there is a valid access token in localStorage, use that
+ *
+ * @returns {boolean}
+ */
+ function hasAccessToken(): boolean {
+  return Boolean(
+    LOCAL_STORAGE_VALUES.accessToken &&
+    LOCAL_STORAGE_VALUES.accessToken !== "undefined"
+  );
+}
+
+/**
+ * If there's an error OR the token in localStorage has expired, refresh the token
+ *
+ * @param {QueryParams} queryParams
+ * @returns {boolean}
+ */
+ function shouldRefreshToken(queryParams: QueryParams): boolean {
+  return Boolean(
+    queryParams[LOCAL_STORAGE_KEYS.hasError] ||
+    hasTokenExpired() ||
+    LOCAL_STORAGE_VALUES.accessToken === "undefined"
+  );
+}
 
 /**
  * Handles logic for retrieving the Spotify access token
@@ -10,40 +65,20 @@ import { LOCALSTORAGE_KEYS, LOCALSTORAGE_VALUES } from "./local-storage";
  *
  * @returns {string | null} A Spotify access token
  */
-export const getAccessToken = (): string | null => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const hasError = urlParams.get("error");
-  const queryParams: QueryParams = {
-    [LOCALSTORAGE_KEYS.accessToken]: urlParams.get("access_token"),
-    [LOCALSTORAGE_KEYS.refreshToken]: urlParams.get("refresh_token"),
-    [LOCALSTORAGE_KEYS.expireTime]: urlParams.get("expires_in"),
-  };
+export function getAccessToken(): string | null {
+  const queryParams = getQueryParams();
 
-  const shouldInitAuth = queryParams[LOCALSTORAGE_KEYS.accessToken];
-  const shouldRefreshToken =
-    hasError ||
-    hasTokenExpired() ||
-    LOCALSTORAGE_VALUES.accessToken === "undefined";
-  const hasAccessToken =
-    LOCALSTORAGE_VALUES.accessToken &&
-    LOCALSTORAGE_VALUES.accessToken !== "undefined";
-
-  // If there's an error OR the token in localStorage has expired, refresh the token
-  if (shouldRefreshToken) {
+  if (shouldRefreshToken(queryParams)) {
     refreshToken();
   }
 
-  // If there is a valid access token in localStorage, use that
-  if (hasAccessToken) {
-    return LOCALSTORAGE_VALUES.accessToken;
+  if (hasAccessToken()) {
+    return LOCAL_STORAGE_VALUES.accessToken;
   }
 
-  // If there is a token in the URL query params, user is logging in for the first time
-  if (shouldInitAuth) {
+  if (shouldInitAuth(queryParams)) {
     return initAuth(queryParams);
   }
 
-  // We should never get here!
   return null;
 };
