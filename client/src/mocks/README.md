@@ -18,20 +18,20 @@ In **development** and **testing** mode, the app is connected with an instance o
 
 - Response `resolver` is a function that accepts a captured request and may return a mocked response.
 
-## Browser support
+## Development workflow
 
 - The file `src/mocks/browser.ts` is in charge of creating an instance of MSW for the **development mode**.
-- The setup is done in the file `client/src/index.ts`.
+- The setup is done in the file `src/mocks/setupBrowser.ts`.
 - You can run the development mode with the following command:
 
 ```sh
-npm run serve
+npm run dev
 ```
 
-## Server support
+## Testing workflow
 
 - The file `src/mocks/server.ts` is in charge of creating an instance of MSW for the **testing mode**.
-- The setup is done in the file `client/src/setupTests.ts`.
+- The setup is done in the file `src/setupTests.ts`.
 - You can run the unit tests with the following command:
 
 ```sh

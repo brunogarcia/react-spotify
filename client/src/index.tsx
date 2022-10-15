@@ -1,20 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import type { SetupWorkerApi } from "msw";
 import App from "./App";
+import setupMockServer from "./mocks/setupBrowser";
 import reportWebVitals from "./reportWebVitals";
-import isApiMockEnabled from "./utils/is-api-mock-enabled";
 
-if (isApiMockEnabled) {
-  interface MockServiceWorker {
-    worker: SetupWorkerApi;
-  }
-
-  const msw: MockServiceWorker = require('./mocks/browser')
-  msw.worker.start({
-    onUnhandledRequest: "bypass",
-  })
-}
+setupMockServer();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
